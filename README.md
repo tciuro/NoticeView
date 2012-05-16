@@ -16,7 +16,7 @@ A TweetBot-like notice component for iOS.
 
 To display a small error notice:
 
-	WBNoticeView *nm = [WBNoticeView defaultManager];<br/>
+	WBNoticeView *nm = [WBNoticeView defaultManager];
 	[nm showErrorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
 	
 To display a large error notice, make the text long enough to wrap to another line. Only two lines are supported. If the text doesn't fit in two lines, an ellipsis will be appended at the end of the second line:

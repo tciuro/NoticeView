@@ -1,0 +1,328 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		592BDDE915645BEE00B78820 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE115645BEE00B78820 /* Default.png */; };
+		592BDDEA15645BEE00B78820 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE215645BEE00B78820 /* Default@2x.png */; };
+		592BDDEB15645BEE00B78820 /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE415645BEE00B78820 /* NoticeView.bundle */; };
+		592BDDEC15645BEE00B78820 /* UILabel+WBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 592BDDE615645BEE00B78820 /* UILabel+WBExtensions.m */; };
+		592BDDED15645BEE00B78820 /* WBNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 592BDDE815645BEE00B78820 /* WBNoticeView.m */; };
+		59A782331562F5F70001F08D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59A782321562F5F70001F08D /* UIKit.framework */; };
+		59A782351562F5F70001F08D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59A782341562F5F70001F08D /* Foundation.framework */; };
+		59A782371562F5F70001F08D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59A782361562F5F70001F08D /* CoreGraphics.framework */; };
+		59A7823D1562F5F70001F08D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 59A7823B1562F5F70001F08D /* InfoPlist.strings */; };
+		59A7823F1562F5F70001F08D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A7823E1562F5F70001F08D /* main.m */; };
+		59A782431562F5F70001F08D /* WBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A782421562F5F70001F08D /* WBAppDelegate.m */; };
+		59A782461562F5F80001F08D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A782441562F5F70001F08D /* MainStoryboard.storyboard */; };
+		59A782491562F5F80001F08D /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A782481562F5F80001F08D /* WBViewController.m */; };
+		59A782591562F8750001F08D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59A782581562F8750001F08D /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		592BDDE115645BEE00B78820 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		592BDDE215645BEE00B78820 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		592BDDE415645BEE00B78820 /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
+		592BDDE515645BEE00B78820 /* UILabel+WBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+WBExtensions.h"; sourceTree = "<group>"; };
+		592BDDE615645BEE00B78820 /* UILabel+WBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+WBExtensions.m"; sourceTree = "<group>"; };
+		592BDDE715645BEE00B78820 /* WBNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNoticeView.h; sourceTree = "<group>"; };
+		592BDDE815645BEE00B78820 /* WBNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNoticeView.m; sourceTree = "<group>"; };
+		59A7822E1562F5F70001F08D /* NoticeView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoticeView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		59A782321562F5F70001F08D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		59A782341562F5F70001F08D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		59A782361562F5F70001F08D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		59A7823A1562F5F70001F08D /* NoticeView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NoticeView-Info.plist"; sourceTree = "<group>"; };
+		59A7823C1562F5F70001F08D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		59A7823E1562F5F70001F08D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		59A782401562F5F70001F08D /* NoticeView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NoticeView-Prefix.pch"; sourceTree = "<group>"; };
+		59A782411562F5F70001F08D /* WBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBAppDelegate.h; sourceTree = "<group>"; };
+		59A782421562F5F70001F08D /* WBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBAppDelegate.m; sourceTree = "<group>"; };
+		59A782451562F5F80001F08D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		59A782471562F5F80001F08D /* WBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBViewController.h; sourceTree = "<group>"; };
+		59A782481562F5F80001F08D /* WBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBViewController.m; sourceTree = "<group>"; };
+		59A782581562F8750001F08D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		59A7822B1562F5F70001F08D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59A782591562F8750001F08D /* QuartzCore.framework in Frameworks */,
+				59A782331562F5F70001F08D /* UIKit.framework in Frameworks */,
+				59A782351562F5F70001F08D /* Foundation.framework in Frameworks */,
+				59A782371562F5F70001F08D /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		592BDDE015645BEE00B78820 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				592BDDE115645BEE00B78820 /* Default.png */,
+				592BDDE215645BEE00B78820 /* Default@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		592BDDE315645BEE00B78820 /* WBNoticeView */ = {
+			isa = PBXGroup;
+			children = (
+				592BDDE715645BEE00B78820 /* WBNoticeView.h */,
+				592BDDE815645BEE00B78820 /* WBNoticeView.m */,
+				592BDDE415645BEE00B78820 /* NoticeView.bundle */,
+				592BDDE515645BEE00B78820 /* UILabel+WBExtensions.h */,
+				592BDDE615645BEE00B78820 /* UILabel+WBExtensions.m */,
+			);
+			path = WBNoticeView;
+			sourceTree = "<group>";
+		};
+		59A782231562F5F70001F08D = {
+			isa = PBXGroup;
+			children = (
+				59A782381562F5F70001F08D /* NoticeView */,
+				59A782311562F5F70001F08D /* Frameworks */,
+				59A7822F1562F5F70001F08D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		59A7822F1562F5F70001F08D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				59A7822E1562F5F70001F08D /* NoticeView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		59A782311562F5F70001F08D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				59A782581562F8750001F08D /* QuartzCore.framework */,
+				59A782321562F5F70001F08D /* UIKit.framework */,
+				59A782341562F5F70001F08D /* Foundation.framework */,
+				59A782361562F5F70001F08D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		59A782381562F5F70001F08D /* NoticeView */ = {
+			isa = PBXGroup;
+			children = (
+				59A782441562F5F70001F08D /* MainStoryboard.storyboard */,
+				59A782411562F5F70001F08D /* WBAppDelegate.h */,
+				59A782421562F5F70001F08D /* WBAppDelegate.m */,
+				59A782471562F5F80001F08D /* WBViewController.h */,
+				59A782481562F5F80001F08D /* WBViewController.m */,
+				592BDDE315645BEE00B78820 /* WBNoticeView */,
+				592BDDE015645BEE00B78820 /* Images */,
+				59A782391562F5F70001F08D /* Supporting Files */,
+			);
+			path = NoticeView;
+			sourceTree = "<group>";
+		};
+		59A782391562F5F70001F08D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				59A7823A1562F5F70001F08D /* NoticeView-Info.plist */,
+				59A7823B1562F5F70001F08D /* InfoPlist.strings */,
+				59A7823E1562F5F70001F08D /* main.m */,
+				59A782401562F5F70001F08D /* NoticeView-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		59A7822D1562F5F70001F08D /* NoticeView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59A7824C1562F5F80001F08D /* Build configuration list for PBXNativeTarget "NoticeView" */;
+			buildPhases = (
+				59A7822A1562F5F70001F08D /* Sources */,
+				59A7822B1562F5F70001F08D /* Frameworks */,
+				59A7822C1562F5F70001F08D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NoticeView;
+			productName = NoticeView;
+			productReference = 59A7822E1562F5F70001F08D /* NoticeView.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		59A782251562F5F70001F08D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = WB;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Tito Ciuro";
+			};
+			buildConfigurationList = 59A782281562F5F70001F08D /* Build configuration list for PBXProject "NoticeView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 59A782231562F5F70001F08D;
+			productRefGroup = 59A7822F1562F5F70001F08D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				59A7822D1562F5F70001F08D /* NoticeView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		59A7822C1562F5F70001F08D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59A7823D1562F5F70001F08D /* InfoPlist.strings in Resources */,
+				59A782461562F5F80001F08D /* MainStoryboard.storyboard in Resources */,
+				592BDDE915645BEE00B78820 /* Default.png in Resources */,
+				592BDDEA15645BEE00B78820 /* Default@2x.png in Resources */,
+				592BDDEB15645BEE00B78820 /* NoticeView.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		59A7822A1562F5F70001F08D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59A7823F1562F5F70001F08D /* main.m in Sources */,
+				59A782431562F5F70001F08D /* WBAppDelegate.m in Sources */,
+				59A782491562F5F80001F08D /* WBViewController.m in Sources */,
+				592BDDEC15645BEE00B78820 /* UILabel+WBExtensions.m in Sources */,
+				592BDDED15645BEE00B78820 /* WBNoticeView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		59A7823B1562F5F70001F08D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				59A7823C1562F5F70001F08D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		59A782441562F5F70001F08D /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				59A782451562F5F80001F08D /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		59A7824A1562F5F80001F08D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		59A7824B1562F5F80001F08D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		59A7824D1562F5F80001F08D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NoticeView/NoticeView-Prefix.pch";
+				INFOPLIST_FILE = "NoticeView/NoticeView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		59A7824E1562F5F80001F08D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NoticeView/NoticeView-Prefix.pch";
+				INFOPLIST_FILE = "NoticeView/NoticeView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		59A782281562F5F70001F08D /* Build configuration list for PBXProject "NoticeView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59A7824A1562F5F80001F08D /* Debug */,
+				59A7824B1562F5F80001F08D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59A7824C1562F5F80001F08D /* Build configuration list for PBXNativeTarget "NoticeView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59A7824D1562F5F80001F08D /* Debug */,
+				59A7824E1562F5F80001F08D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 59A782251562F5F70001F08D /* Project object */;
+}

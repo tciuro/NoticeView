@@ -31,8 +31,14 @@ To display a small success notice:
 	
 ## Notes
 
-- If you pass nil instead of a valid UIView, an NSInvalidArgumentException exception will be raised.
-- Default values: title (@"Unknown Error"), message (@"Information not provided."), duration (0.3) and delay (2.0)
+If you pass nil instead of a valid UIView, an NSInvalidArgumentException exception will be raised.
+
+The default values are the following:
+
+        if (nil == title) title = @"Unknown Error";
+        if (nil == message) message = @"Information not provided.";
+        if (0.0 == duration) duration = 0.3;
+        if (0.0 == delay) delay = 2.0;
 
 ## Contribute
 

@@ -23,7 +23,13 @@ typedef enum {
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *messageLabel;
 
-- (void)_showNoticeOfType:(WBNoticeViewType)noticeType view:(UIView *)view title:(NSString *)title message:(NSString *)message duration:(float)duration delay:(float)delay;
+- (void)_showNoticeOfType:(WBNoticeViewType)noticeType
+                     view:(UIView *)view
+                    title:(NSString *)title
+                  message:(NSString *)message
+                 duration:(float)duration
+                    delay:(float)delay
+                    alpha:(float)alpha;
 
 @end
 
@@ -44,29 +50,71 @@ typedef enum {
 
 #pragma mark - Error Notice Methods
 
-- (void)showErrorNoticeInView:(UIView *)view title:(NSString *)title message:(NSString *)message
+- (void)showErrorNoticeInView:(UIView *)view
+                        title:(NSString *)title
+                      message:(NSString *)message
 {
-    [self _showNoticeOfType:WBNoticeViewTypeError view:view title:title message:message duration:0.0 delay:0.0];
+    [self _showNoticeOfType:WBNoticeViewTypeError
+                       view:view
+                      title:title
+                    message:message
+                   duration:0.0
+                      delay:0.0
+                      alpha:0.8];
 }
 
-- (void)showErrorNoticeInView:(UIView *)view title:(NSString *)title message:(NSString *)message duration:(float)duration delay:(float)delay
+- (void)showErrorNoticeInView:(UIView *)view
+                        title:(NSString *)title
+                      message:(NSString *)message
+                     duration:(float)duration
+                        delay:(float)delay
+                        alpha:(float)alpha
 {
-    [self _showNoticeOfType:WBNoticeViewTypeError view:view title:title message:message duration:duration delay:delay];
+    [self _showNoticeOfType:WBNoticeViewTypeError
+                       view:view
+                      title:title
+                    message:message
+                   duration:duration
+                      delay:delay
+                      alpha:alpha];
 }
 
-- (void)showSuccessNoticeInView:(UIView *)view message:(NSString *)message
+- (void)showSuccessNoticeInView:(UIView *)view
+                        message:(NSString *)message
 {
-    [self _showNoticeOfType:WBNoticeViewTypeSuccess view:view title:message message:nil duration:0.0 delay:0.0];
+    [self _showNoticeOfType:WBNoticeViewTypeSuccess
+                       view:view
+                      title:message
+                    message:nil
+                   duration:0.0
+                      delay:0.0
+                      alpha:0.8];
 }
 
-- (void)showSuccessNoticeInView:(UIView *)view message:(NSString *)message duration:(float)duration delay:(float)delay
+- (void)showSuccessNoticeInView:(UIView *)view
+                        message:(NSString *)message
+                       duration:(float)duration
+                          delay:(float)delay
+                          alpha:(float)alpha
 {
-    [self _showNoticeOfType:WBNoticeViewTypeSuccess view:view title:message message:nil duration:duration delay:delay];
+    [self _showNoticeOfType:WBNoticeViewTypeSuccess
+                       view:view
+                      title:message
+                    message:nil
+                   duration:duration
+                      delay:delay
+                      alpha:alpha];
 }
 
 #pragma mark - Private Section
 
-- (void)_showNoticeOfType:(WBNoticeViewType)noticeType view:(UIView *)view title:(NSString *)title message:(NSString *)message duration:(float)duration delay:(float)delay
+- (void)_showNoticeOfType:(WBNoticeViewType)noticeType
+                     view:(UIView *)view
+                    title:(NSString *)title
+                  message:(NSString *)message
+                 duration:(float)duration
+                    delay:(float)delay
+                    alpha:(float)alpha
 {
     if (nil == noticeView) {
         // Sanity check
@@ -162,7 +210,7 @@ typedef enum {
             CGRect newFrame = self.noticeView.frame;
             newFrame.origin.y = 0.0;
             self.noticeView.frame = newFrame;
-            self.noticeView.alpha = 1.0;
+            self.noticeView.alpha = alpha;
         } completion:^ (BOOL finished) {
             if (finished) {
                 // Display for 2 seconds, then hide it again

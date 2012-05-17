@@ -14,12 +14,26 @@
 
 // Error notice methods
 
-- (void)showErrorNoticeInView:(UIView *)view title:(NSString *)title message:(NSString *)message;
-- (void)showErrorNoticeInView:(UIView *)view title:(NSString *)title message:(NSString *)message duration:(float)duration delay:(float)delay;
+- (void)showErrorNoticeInView:(UIView *)view
+                        title:(NSString *)title
+                      message:(NSString *)message;
+
+- (void)showErrorNoticeInView:(UIView *)view
+                        title:(NSString *)title
+                      message:(NSString *)message
+                     duration:(float)duration
+                        delay:(float)delay
+                        alpha:(float)alpha;
 
 // Success notice methods
 
-- (void)showSuccessNoticeInView:(UIView *)view message:(NSString *)message;
-- (void)showSuccessNoticeInView:(UIView *)view message:(NSString *)message duration:(float)duration delay:(float)delay;
+- (void)showSuccessNoticeInView:(UIView *)view
+                        message:(NSString *)message;
+
+- (void)showSuccessNoticeInView:(UIView *)view
+                        message:(NSString *)message
+                       duration:(float)duration
+                          delay:(float)delay
+                          alpha:(float)alpha;
 
 @end

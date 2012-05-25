@@ -25,6 +25,14 @@
                         delay:(float)delay
                         alpha:(float)alpha;
 
+- (void)showErrorNoticeInView:(UIView *)view
+                        title:(NSString *)title
+                      message:(NSString *)message
+                     duration:(float)duration
+                        delay:(float)delay
+                        alpha:(float)alpha
+                      yOrigin:(CGFloat)origin;
+
 // Success notice methods
 
 - (void)showSuccessNoticeInView:(UIView *)view
@@ -34,6 +42,7 @@
                         message:(NSString *)message
                        duration:(float)duration
                           delay:(float)delay
-                          alpha:(float)alpha;
+                          alpha:(float)alpha
+                        yOrigin:(CGFloat)origin;
 
 @end

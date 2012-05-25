@@ -29,8 +29,14 @@
 
 @interface WBViewController : UIViewController
 
+@property(nonatomic, strong) IBOutlet UIImageView *headerView;
+
 - (IBAction)showSmallErrorNotice:(id)sender;
 - (IBAction)showLargeErrorNotice:(id)sender;
 - (IBAction)showSmallSuccessNotice:(id)sender;
+
+- (IBAction)showSmallErrorNoticeBelow:(id)sender;
+- (IBAction)showLargeErrorNoticeBelow:(id)sender;
+- (IBAction)showSmallSuccessNoticeBelow:(id)sender;
 
 @end

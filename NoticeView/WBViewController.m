@@ -34,6 +34,8 @@
 
 @implementation WBViewController
 
+@synthesize headerView;
+
 - (void)viewDidLoad
 {
     UIImage *bkgImage = [UIImage imageNamed:@"Default.png"];
@@ -59,7 +61,6 @@
 
 #pragma mark - Action Methods
 
-
 - (IBAction)showSmallErrorNotice:(id)sender
 {
     WBNoticeView *nm = [WBNoticeView defaultManager];
@@ -76,6 +77,41 @@
 {
     WBNoticeView *nm = [WBNoticeView defaultManager];
     [nm showSuccessNoticeInView:self.view message:@"Link Saved Successfully"];
+}
+
+- (IBAction)showSmallErrorNoticeBelow:(id)sender
+{
+    WBNoticeView *nm = [WBNoticeView defaultManager];
+    [nm showErrorNoticeInView:self.view
+                        title:@"Network Error"
+                      message:@"Check your network connection."
+                     duration:0.0
+                        delay:0.0
+                        alpha:0.8
+                      yOrigin:self.headerView.frame.size.height];
+}
+
+- (IBAction)showLargeErrorNoticeBelow:(id)sender
+{
+    WBNoticeView *nm = [WBNoticeView defaultManager];
+    [nm showErrorNoticeInView:self.view
+                        title:@"Network Error"
+                      message:@"Check your network connection. Twitter could also be down."
+                     duration:0.0
+                        delay:0.0
+                        alpha:0.8
+                      yOrigin:self.headerView.frame.size.height];
+}
+
+- (IBAction)showSmallSuccessNoticeBelow:(id)sender
+{
+    WBNoticeView *nm = [WBNoticeView defaultManager];
+    [nm showSuccessNoticeInView:self.view
+                      message:@"Link Saved Successfully"
+                     duration:0.0
+                        delay:0.0
+                        alpha:0.8
+                      yOrigin:self.headerView.frame.size.height];
 }
 
 @end

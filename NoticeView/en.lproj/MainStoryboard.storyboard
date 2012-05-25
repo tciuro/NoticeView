@@ -1,22 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="mRO-Fr-kEU">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--View Controller - NoticeView-->
         <scene sceneID="5">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="WBViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Vg3-qF-Q8T">
-                                <rect key="frame" x="74" y="104" width="173" height="37"/>
+                                <rect key="frame" x="73" y="257" width="173" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Small Error Below">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showSmallErrorNoticeBelow:" destination="2" eventType="touchUpInside" id="ylb-TG-YxO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XR3-Kf-0Pf">
+                                <rect key="frame" x="73" y="302" width="173" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Large Error Below">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showLargeErrorNoticeBelow:" destination="2" eventType="touchUpInside" id="blA-KJ-IUz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gi6-oq-xIu">
+                                <rect key="frame" x="71" y="347" width="178" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Small Success Below">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showSmallSuccessNoticeBelow:" destination="2" eventType="touchUpInside" id="waL-5p-Rwv"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="navigationBar.png" id="yEx-cM-vtz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Xwf-eU-mzM">
+                                <rect key="frame" x="73" y="95" width="173" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Small Error">
@@ -27,11 +76,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showSmallErrorNotice:" destination="2" eventType="touchUpInside" id="foY-V4-RaC"/>
+                                    <action selector="showSmallErrorNotice:" destination="2" eventType="touchUpInside" id="VRO-SD-itu"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XR3-Kf-0Pf">
-                                <rect key="frame" x="74" y="149" width="173" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oNn-y7-T1N">
+                                <rect key="frame" x="73" y="140" width="173" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Large Error">
@@ -42,11 +91,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showLargeErrorNotice:" destination="2" eventType="touchUpInside" id="FDR-hT-QJ9"/>
+                                    <action selector="showLargeErrorNotice:" destination="2" eventType="touchUpInside" id="LE4-ZI-6Ou"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gi6-oq-xIu">
-                                <rect key="frame" x="74" y="274" width="173" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WpV-6q-VuB">
+                                <rect key="frame" x="71" y="185" width="178" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Small Success">
@@ -57,23 +106,50 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showSmallSuccessNotice:" destination="2" eventType="touchUpInside" id="Peu-nV-Mvo"/>
+                                    <action selector="showSmallSuccessNotice:" destination="2" eventType="touchUpInside" id="IZc-Hp-Izk"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="NoticeView" id="6fb-bC-rsE"/>
+                    <connections>
+                        <outlet property="headerView" destination="yEx-cM-vtz" id="Pxy-W0-NzF"/>
+                    </connections>
                 </viewController>
             </objects>
+            <point key="canvasLocation" x="585" y="218"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="TQy-EY-xtH">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0f-Kj-XaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController definesPresentationContext="YES" id="mRO-Fr-kEU" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="brG-MW-mKF">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="ojO-yi-Vbu"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="137" y="218"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="navigationBar.png" width="320" height="44"/>
+    </resources>
     <classes>
         <class className="WBViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WBViewController.h"/>
             <relationships>
                 <relationship kind="action" name="showLargeErrorNotice:"/>
+                <relationship kind="action" name="showLargeErrorNoticeBelow:"/>
                 <relationship kind="action" name="showSmallErrorNotice:"/>
+                <relationship kind="action" name="showSmallErrorNoticeBelow:"/>
                 <relationship kind="action" name="showSmallSuccessNotice:"/>
+                <relationship kind="action" name="showSmallSuccessNoticeBelow:"/>
+                <relationship kind="outlet" name="headerView" candidateClass="UIImageView"/>
             </relationships>
         </class>
     </classes>

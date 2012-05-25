@@ -12,6 +12,7 @@
 		592BDDEB15645BEE00B78820 /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE415645BEE00B78820 /* NoticeView.bundle */; };
 		592BDDEC15645BEE00B78820 /* UILabel+WBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 592BDDE615645BEE00B78820 /* UILabel+WBExtensions.m */; };
 		592BDDED15645BEE00B78820 /* WBNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 592BDDE815645BEE00B78820 /* WBNoticeView.m */; };
+		595FE869156F021E004C505B /* navigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 595FE868156F021E004C505B /* navigationBar.png */; };
 		59A782331562F5F70001F08D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59A782321562F5F70001F08D /* UIKit.framework */; };
 		59A782351562F5F70001F08D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59A782341562F5F70001F08D /* Foundation.framework */; };
 		59A782371562F5F70001F08D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59A782361562F5F70001F08D /* CoreGraphics.framework */; };
@@ -31,6 +32,7 @@
 		592BDDE615645BEE00B78820 /* UILabel+WBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+WBExtensions.m"; sourceTree = "<group>"; };
 		592BDDE715645BEE00B78820 /* WBNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNoticeView.h; sourceTree = "<group>"; };
 		592BDDE815645BEE00B78820 /* WBNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNoticeView.m; sourceTree = "<group>"; };
+		595FE868156F021E004C505B /* navigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBar.png; sourceTree = "<group>"; };
 		59A7822E1562F5F70001F08D /* NoticeView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoticeView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59A782321562F5F70001F08D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		59A782341562F5F70001F08D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,6 +67,7 @@
 		592BDDE015645BEE00B78820 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				595FE868156F021E004C505B /* navigationBar.png */,
 				592BDDE115645BEE00B78820 /* Default.png */,
 				592BDDE215645BEE00B78820 /* Default@2x.png */,
 			);
@@ -194,6 +197,7 @@
 				592BDDE915645BEE00B78820 /* Default.png in Resources */,
 				592BDDEA15645BEE00B78820 /* Default@2x.png in Resources */,
 				592BDDEB15645BEE00B78820 /* NoticeView.bundle in Resources */,
+				595FE869156F021E004C505B /* navigationBar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

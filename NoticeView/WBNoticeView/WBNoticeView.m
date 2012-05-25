@@ -29,7 +29,8 @@ typedef enum {
                   message:(NSString *)message
                  duration:(float)duration
                     delay:(float)delay
-                    alpha:(float)alpha;
+                    alpha:(float)alpha
+                  yOrigin:(CGFloat)origin;
 
 @end
 
@@ -60,7 +61,8 @@ typedef enum {
                     message:message
                    duration:0.0
                       delay:0.0
-                      alpha:0.8];
+                      alpha:0.8
+                    yOrigin:0.0];
 }
 
 - (void)showErrorNoticeInView:(UIView *)view
@@ -76,7 +78,26 @@ typedef enum {
                     message:message
                    duration:duration
                       delay:delay
-                      alpha:alpha];
+                      alpha:alpha
+                    yOrigin:0.0];
+}
+
+- (void)showErrorNoticeInView:(UIView *)view
+                        title:(NSString *)title
+                      message:(NSString *)message
+                     duration:(float)duration
+                        delay:(float)delay
+                        alpha:(float)alpha
+                      yOrigin:(CGFloat)origin
+{
+    [self _showNoticeOfType:WBNoticeViewTypeError
+                       view:view
+                      title:title
+                    message:message
+                   duration:duration
+                      delay:delay
+                      alpha:alpha
+                    yOrigin:origin];
 }
 
 - (void)showSuccessNoticeInView:(UIView *)view
@@ -88,7 +109,8 @@ typedef enum {
                     message:nil
                    duration:0.0
                       delay:0.0
-                      alpha:0.8];
+                      alpha:0.8
+                    yOrigin:0.0];
 }
 
 - (void)showSuccessNoticeInView:(UIView *)view
@@ -103,7 +125,25 @@ typedef enum {
                     message:nil
                    duration:duration
                       delay:delay
-                      alpha:alpha];
+                      alpha:alpha
+                    yOrigin:0.0];
+}
+
+- (void)showSuccessNoticeInView:(UIView *)view
+                        message:(NSString *)message
+                       duration:(float)duration
+                          delay:(float)delay
+                          alpha:(float)alpha
+                        yOrigin:(CGFloat)origin
+{
+    [self _showNoticeOfType:WBNoticeViewTypeSuccess
+                       view:view
+                      title:message
+                    message:nil
+                   duration:duration
+                      delay:delay
+                      alpha:alpha
+                    yOrigin:origin];
 }
 
 #pragma mark - Private Section
@@ -115,6 +155,7 @@ typedef enum {
                  duration:(float)duration
                     delay:(float)delay
                     alpha:(float)alpha
+                  yOrigin:(CGFloat)origin
 {
     if (nil == noticeView) {
         // Sanity check
@@ -208,12 +249,12 @@ typedef enum {
         // Go ahead, display it and then hide it automatically
         [UIView animateWithDuration:duration animations:^ {
             CGRect newFrame = self.noticeView.frame;
-            newFrame.origin.y = 0.0;
+            newFrame.origin.y = origin;
             self.noticeView.frame = newFrame;
             self.noticeView.alpha = alpha;
         } completion:^ (BOOL finished) {
             if (finished) {
-                // Display for 2 seconds, then hide it again
+                // Display for a while, then hide it again
                 [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^ {
                     CGRect newFrame = self.noticeView.frame;
                     newFrame.origin.y = hiddenYOrigin;

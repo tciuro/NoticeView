@@ -22,6 +22,7 @@ typedef enum {
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *messageLabel;
+@property(nonatomic, assign) CGFloat screenWidth;
 
 - (void)_showNoticeOfType:(WBNoticeViewType)noticeType
                      view:(UIView *)view
@@ -36,7 +37,7 @@ typedef enum {
 
 @implementation WBNoticeView
 
-@synthesize noticeView, imageView, titleLabel, messageLabel;
+@synthesize noticeView, imageView, titleLabel, messageLabel, screenWidth;
 
 + (WBNoticeView *)defaultManager
 {
@@ -47,6 +48,21 @@ typedef enum {
     }
     
     return __sWBNoticeView;
+}
+
+- (id)init
+{
+    if (self == [super init]) {
+        [self didRotateDevice:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotateDevice:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    }
+    
+    return self;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 #pragma mark - Error Notice Methods
@@ -146,6 +162,21 @@ typedef enum {
                     yOrigin:origin];
 }
 
+#pragma mark - Delegate Methods
+
+- (void)didRotateDevice:(NSNotification *)notification
+{   
+    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    UIDeviceOrientation orientation = [[UIDevice currentDevice]orientation];
+    
+    if ((UIDeviceOrientationLandscapeLeft == orientation) || 
+        (UIDeviceOrientationLandscapeRight == orientation)) {       
+        self.screenWidth = screenBounds.size.height;
+    } else {
+        self.screenWidth = screenBounds.size.width;
+    }
+}
+
 #pragma mark - Private Section
 
 - (void)_showNoticeOfType:(WBNoticeViewType)noticeType
@@ -176,44 +207,58 @@ typedef enum {
         NSString *noticeBackgroundImageName = [path stringByAppendingPathComponent:(WBNoticeViewTypeError == noticeType ? @"notice_error.png" : @"notice_success.png")];
         NSString *noticeIconImageName = [path stringByAppendingPathComponent:(WBNoticeViewTypeError == noticeType ? @"notice_error_icon.png" : @"notice_success_icon.png")];
         NSInteger numberOfLines = 1;
-        CGRect r;
-
+        CGFloat messageLineHeight = 30.0;
+        
+        // Make and add the title label
+        float titleYOrigin = (WBNoticeViewTypeError == noticeType ? 10.0 : 18.0);
+        self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, titleYOrigin, self.screenWidth - 70.0, 16.0)];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.titleLabel.backgroundColor = [UIColor clearColor];
+        self.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
+        self.titleLabel.shadowColor = [UIColor blackColor];
+        self.titleLabel.text = title;
+        
         if (WBNoticeViewTypeError == noticeType) {
             // Make the message label
-            self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, 19.0, 245.0, 30.0)];
+            self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, 10.0 + 10.0, screenWidth - 70.0, messageLineHeight)];
             self.messageLabel.font = [UIFont systemFontOfSize:13.0];
             self.messageLabel.textColor = [UIColor colorWithRed:239.0/255.0 green:167.0/255.0 blue:163.0/255.0 alpha:1.0];
             self.messageLabel.backgroundColor = [UIColor clearColor];
             self.messageLabel.text = message;
             
+            // Calculate the number of lines it'll take to display the text
             numberOfLines = [[self.messageLabel lines]count];
-            self.messageLabel.numberOfLines = (numberOfLines < 2 ? 1 : 2);
-            r = self.messageLabel.frame;
-        }
-        
-        // Gather the dimensions of the UI elements
-        float noticeViewHeight = 0.0;
-        float hiddenYOrigin = 0.0;
-        if (numberOfLines < 2) {
-            noticeViewHeight = 50.0;
-            hiddenYOrigin = -60.0;
-        } else {
-            noticeViewHeight = 70.0;
-            hiddenYOrigin = -80.0;
-        }
-        
-        // Reposition the message label, since it may have shifted due to the number of lines change
-        if (WBNoticeViewTypeError == noticeType) {
-            r.origin.y = (numberOfLines < 2 ? 19.0 : 27.0);
+            self.messageLabel.numberOfLines = numberOfLines;
+            CGRect r = self.messageLabel.frame;
+            r.origin.y = self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height;//(1 == numberOfLines) ? self.titleLabel.frame.origin.y : self.titleLabel.frame.origin.y - 11.0;
+            
+            // This step is needed to avoid having the UILabel center the text in the middle
+            [self.messageLabel sizeToFit];
+            
+            // Now we can determine the height of one line of text
+            messageLineHeight = self.messageLabel.frame.size.height;
+            r.size.height = self.messageLabel.frame.size.height * numberOfLines;
+            r.size.width = self.screenWidth - 70.0;
             self.messageLabel.frame = r;
         }
         
+        // Calculate the notice view height
+        float noticeViewHeight = (WBNoticeViewTypeError == noticeType ? 50.0 : 40.0);
+        float hiddenYOrigin = 0.0;
+        if (numberOfLines > 1) {
+            noticeViewHeight += (numberOfLines - 1) * messageLineHeight;
+        }
+        
+        // Make sure we hide completely the view, including its shadow
+        hiddenYOrigin = -noticeViewHeight - 20.0;
+        
         // Make and add the notice view
-        self.noticeView = [[UIView alloc]initWithFrame:CGRectMake(0.0, -60.0, 320.0, noticeViewHeight)];
+        self.noticeView = [[UIView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, screenWidth, noticeViewHeight + 10.0)];
         [view addSubview:self.noticeView];
         
         // Make and add the image view
-        self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, 320.0, noticeViewHeight)];
+        self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, screenWidth, noticeViewHeight + 10.0)];
         [self.imageView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
         self.imageView.image = [UIImage imageWithContentsOfFile:noticeBackgroundImageName];
         [self.noticeView addSubview:self.imageView];
@@ -223,18 +268,10 @@ typedef enum {
         iconView.image = [UIImage imageWithContentsOfFile:noticeIconImageName];
         [self.noticeView addSubview:iconView];
         
-        // Make and add the title label
-        float titleYOrigin = (WBNoticeViewTypeError == noticeType ? 10.0 : 18.0);
-        self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, titleYOrigin, 255.0, 15.0)];
-        self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
-        self.titleLabel.textColor = [UIColor whiteColor];
-        self.titleLabel.backgroundColor = [UIColor clearColor];
-        self.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
-        self.titleLabel.shadowColor = [UIColor blackColor];
-        self.titleLabel.text = title;
+        // Add the title label
         [self.noticeView addSubview:self.titleLabel];
         
-        // Add the message label if it applies
+        // Add the message label if it's an error notice
         if (WBNoticeViewTypeError == noticeType) {
             [self.noticeView addSubview:self.messageLabel];
         }
@@ -260,11 +297,13 @@ typedef enum {
                     newFrame.origin.y = hiddenYOrigin;
                     self.noticeView.frame = newFrame;
                 } completion:^ (BOOL finished) {
-                    // Cleanup
-                    noticeView = nil;
-                    imageView = nil;
-                    titleLabel = nil;
-                    messageLabel = nil;
+                    if (finished) {                        
+                        // Cleanup
+                        noticeView = nil;
+                        imageView = nil;
+                        titleLabel = nil;
+                        messageLabel = nil;
+                    }
                 }];
             }
         }];

@@ -56,7 +56,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return YES;
 }
 
 #pragma mark - Action Methods
@@ -70,7 +70,7 @@
 - (IBAction)showLargeErrorNotice:(id)sender
 {
     WBNoticeView *nm = [WBNoticeView defaultManager];
-    [nm showErrorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection. Twitter could also be down."];
+    [nm showErrorNoticeInView:self.view title:@"Network Error" message:@"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."];
 }
 
 - (IBAction)showSmallSuccessNotice:(id)sender
@@ -96,7 +96,7 @@
     WBNoticeView *nm = [WBNoticeView defaultManager];
     [nm showErrorNoticeInView:self.view
                         title:@"Network Error"
-                      message:@"Check your network connection. Twitter could also be down."
+                      message:@"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                      duration:0.0
                         delay:0.0
                         alpha:0.8

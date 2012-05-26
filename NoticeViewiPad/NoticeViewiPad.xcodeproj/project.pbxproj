@@ -1,0 +1,317 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7477C26D1570573300D0E620 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7477C26C1570573300D0E620 /* UIKit.framework */; };
+		7477C26F1570573300D0E620 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7477C26E1570573300D0E620 /* Foundation.framework */; };
+		7477C2711570573300D0E620 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7477C2701570573300D0E620 /* CoreGraphics.framework */; };
+		7477C2771570573300D0E620 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7477C2751570573300D0E620 /* InfoPlist.strings */; };
+		7477C2791570573300D0E620 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7477C2781570573300D0E620 /* main.m */; };
+		7477C27D1570573300D0E620 /* WBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7477C27C1570573300D0E620 /* WBAppDelegate.m */; };
+		7477C2801570573300D0E620 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7477C27E1570573300D0E620 /* MainStoryboard.storyboard */; };
+		7477C2831570573300D0E620 /* WBMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7477C2821570573300D0E620 /* WBMasterViewController.m */; };
+		7477C2861570573300D0E620 /* WBDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7477C2851570573300D0E620 /* WBDetailViewController.m */; };
+		74D33BFD157057A000225A76 /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 74D33BF8157057A000225A76 /* NoticeView.bundle */; };
+		74D33BFE157057A000225A76 /* UILabel+WBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D33BFA157057A000225A76 /* UILabel+WBExtensions.m */; };
+		74D33BFF157057A000225A76 /* WBNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D33BFC157057A000225A76 /* WBNoticeView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7477C2681570573300D0E620 /* NoticeViewiPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoticeViewiPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7477C26C1570573300D0E620 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7477C26E1570573300D0E620 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7477C2701570573300D0E620 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7477C2741570573300D0E620 /* NoticeViewiPad-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NoticeViewiPad-Info.plist"; sourceTree = "<group>"; };
+		7477C2761570573300D0E620 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7477C2781570573300D0E620 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7477C27A1570573300D0E620 /* NoticeViewiPad-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NoticeViewiPad-Prefix.pch"; sourceTree = "<group>"; };
+		7477C27B1570573300D0E620 /* WBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBAppDelegate.h; sourceTree = "<group>"; };
+		7477C27C1570573300D0E620 /* WBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBAppDelegate.m; sourceTree = "<group>"; };
+		7477C27F1570573300D0E620 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		7477C2811570573300D0E620 /* WBMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBMasterViewController.h; sourceTree = "<group>"; };
+		7477C2821570573300D0E620 /* WBMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBMasterViewController.m; sourceTree = "<group>"; };
+		7477C2841570573300D0E620 /* WBDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBDetailViewController.h; sourceTree = "<group>"; };
+		7477C2851570573300D0E620 /* WBDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBDetailViewController.m; sourceTree = "<group>"; };
+		74D33BF8157057A000225A76 /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
+		74D33BF9157057A000225A76 /* UILabel+WBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+WBExtensions.h"; sourceTree = "<group>"; };
+		74D33BFA157057A000225A76 /* UILabel+WBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+WBExtensions.m"; sourceTree = "<group>"; };
+		74D33BFB157057A000225A76 /* WBNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBNoticeView.h; sourceTree = "<group>"; };
+		74D33BFC157057A000225A76 /* WBNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBNoticeView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7477C2651570573300D0E620 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7477C26D1570573300D0E620 /* UIKit.framework in Frameworks */,
+				7477C26F1570573300D0E620 /* Foundation.framework in Frameworks */,
+				7477C2711570573300D0E620 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7477C25D1570573300D0E620 = {
+			isa = PBXGroup;
+			children = (
+				7477C2721570573300D0E620 /* NoticeViewiPad */,
+				7477C26B1570573300D0E620 /* Frameworks */,
+				7477C2691570573300D0E620 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7477C2691570573300D0E620 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7477C2681570573300D0E620 /* NoticeViewiPad.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7477C26B1570573300D0E620 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7477C26C1570573300D0E620 /* UIKit.framework */,
+				7477C26E1570573300D0E620 /* Foundation.framework */,
+				7477C2701570573300D0E620 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7477C2721570573300D0E620 /* NoticeViewiPad */ = {
+			isa = PBXGroup;
+			children = (
+				7477C27E1570573300D0E620 /* MainStoryboard.storyboard */,
+				7477C27B1570573300D0E620 /* WBAppDelegate.h */,
+				7477C27C1570573300D0E620 /* WBAppDelegate.m */,
+				7477C2811570573300D0E620 /* WBMasterViewController.h */,
+				7477C2821570573300D0E620 /* WBMasterViewController.m */,
+				7477C2841570573300D0E620 /* WBDetailViewController.h */,
+				7477C2851570573300D0E620 /* WBDetailViewController.m */,
+				74D33BF7157057A000225A76 /* WBNoticeView */,
+				7477C2731570573300D0E620 /* Supporting Files */,
+			);
+			path = NoticeViewiPad;
+			sourceTree = "<group>";
+		};
+		7477C2731570573300D0E620 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7477C2741570573300D0E620 /* NoticeViewiPad-Info.plist */,
+				7477C2751570573300D0E620 /* InfoPlist.strings */,
+				7477C2781570573300D0E620 /* main.m */,
+				7477C27A1570573300D0E620 /* NoticeViewiPad-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		74D33BF7157057A000225A76 /* WBNoticeView */ = {
+			isa = PBXGroup;
+			children = (
+				74D33BF8157057A000225A76 /* NoticeView.bundle */,
+				74D33BF9157057A000225A76 /* UILabel+WBExtensions.h */,
+				74D33BFA157057A000225A76 /* UILabel+WBExtensions.m */,
+				74D33BFB157057A000225A76 /* WBNoticeView.h */,
+				74D33BFC157057A000225A76 /* WBNoticeView.m */,
+			);
+			name = WBNoticeView;
+			path = ../../NoticeView/WBNoticeView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7477C2671570573300D0E620 /* NoticeViewiPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7477C2891570573300D0E620 /* Build configuration list for PBXNativeTarget "NoticeViewiPad" */;
+			buildPhases = (
+				7477C2641570573300D0E620 /* Sources */,
+				7477C2651570573300D0E620 /* Frameworks */,
+				7477C2661570573300D0E620 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NoticeViewiPad;
+			productName = NoticeViewiPad;
+			productReference = 7477C2681570573300D0E620 /* NoticeViewiPad.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7477C25F1570573300D0E620 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = WB;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Webbo, LLC";
+			};
+			buildConfigurationList = 7477C2621570573300D0E620 /* Build configuration list for PBXProject "NoticeViewiPad" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7477C25D1570573300D0E620;
+			productRefGroup = 7477C2691570573300D0E620 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7477C2671570573300D0E620 /* NoticeViewiPad */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7477C2661570573300D0E620 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7477C2771570573300D0E620 /* InfoPlist.strings in Resources */,
+				7477C2801570573300D0E620 /* MainStoryboard.storyboard in Resources */,
+				74D33BFD157057A000225A76 /* NoticeView.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7477C2641570573300D0E620 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7477C2791570573300D0E620 /* main.m in Sources */,
+				7477C27D1570573300D0E620 /* WBAppDelegate.m in Sources */,
+				7477C2831570573300D0E620 /* WBMasterViewController.m in Sources */,
+				7477C2861570573300D0E620 /* WBDetailViewController.m in Sources */,
+				74D33BFE157057A000225A76 /* UILabel+WBExtensions.m in Sources */,
+				74D33BFF157057A000225A76 /* WBNoticeView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7477C2751570573300D0E620 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7477C2761570573300D0E620 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7477C27E1570573300D0E620 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7477C27F1570573300D0E620 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7477C2871570573300D0E620 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		7477C2881570573300D0E620 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7477C28A1570573300D0E620 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NoticeViewiPad/NoticeViewiPad-Prefix.pch";
+				INFOPLIST_FILE = "NoticeViewiPad/NoticeViewiPad-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7477C28B1570573300D0E620 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NoticeViewiPad/NoticeViewiPad-Prefix.pch";
+				INFOPLIST_FILE = "NoticeViewiPad/NoticeViewiPad-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7477C2621570573300D0E620 /* Build configuration list for PBXProject "NoticeViewiPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7477C2871570573300D0E620 /* Debug */,
+				7477C2881570573300D0E620 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7477C2891570573300D0E620 /* Build configuration list for PBXNativeTarget "NoticeViewiPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7477C28A1570573300D0E620 /* Debug */,
+				7477C28B1570573300D0E620 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7477C25F1570573300D0E620 /* Project object */;
+}

@@ -3,7 +3,7 @@
 A TweetBot-like notice component for iOS.
 
 <br/>
-![Alt text](http://cloud.github.com/downloads/tciuro/NoticeView/screenshot.png)
+![Alt text](http://cloud.github.com/downloads/tciuro/NoticeView/screenshot_2.0.png)
 <br/>
 <br/>
 
@@ -12,26 +12,47 @@ A TweetBot-like notice component for iOS.
 * Drop the WBNoticeView folder in your project
 * Add QuartzCore.framework to your project
 
+### NoticeView 1.0 vs 2.0
+
+The behavior in version 1 was "fire and forget". Calling *showErrorNoticeInView* or *showSuccessNoticeInView* displayed the notice, but there was no way to retain it for later use. Version 2 allows the developer to instantiate a notice, customize it (optional) and show it. Not only it's possible to retain it, but also customize it anytime with say, a different title and message. Oh, yeah… and it's cleaner too.
+
 ### Examples
+
+Since version 2 is more flexible, I have eliminated the older examples and replaced them with the new API. Please note that the older API is still there, for backward compatibility.
+<br/><br/>
 
 To display a small error notice:
 
-	WBNoticeView *nm = [WBNoticeView defaultManager];
-	[nm showErrorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+    [notice show];
 	
-To display a large error notice, make the text long enough to wrap to another line. Only two lines are supported. If the text doesn't fit in two lines, an ellipsis will be appended at the end of the second line:
+If the message provided doesn't fit in one line, the notice will be enlarged to accommodate the text:
 
-	WBNoticeView *nm = [WBNoticeView defaultManager];
-	[nm showErrorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection. Twitter could also be down."];
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."];
+    [notice show];
 
 To display a small success notice:
 
-	WBNoticeView *nm = [WBNoticeView defaultManager];
-	[nm showSuccessNoticeInView:self.view message:@"Link Saved Successfully"];
+    WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:@"Link Saved Successfully"];
+    [notice show];
+    
+### Customizing the Notice
+
+Instead of piling up a bunch of arguments in a method call, I decided to use properties instead. This way, new properties can be added easily without having to clutter the API with specialized methods.
+
+Example: customize a success notice with a bit of transparency and placing the notice at a specific Y coordinate:
+
+    WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:@"Link Saved Successfully"];
+    
+    notice.alpha = 0.8;
+    notice.originY = self.headerView.frame.size.height;
+    
+    [notice show];
+
 	
 ## Notes
 
-If you pass nil instead of a valid UIView, an NSInvalidArgumentException exception will be raised.
+> If you pass nil instead of a valid UIView, an NSInvalidArgumentException exception will be raised.
 
 The default values are the following:
 
@@ -39,6 +60,7 @@ The default values are the following:
         if (nil == message) message = @"Information not provided.";
         if (0.0 == duration) duration = 0.5;
         if (0.0 == delay) delay = 2.0;
+        if (0.0 == alpha) alpha = 1.0;
 
 ## Contribute
 

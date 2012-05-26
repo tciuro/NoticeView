@@ -10,6 +10,11 @@
 
 @interface WBNoticeView : NSObject
 
+typedef enum {
+    WBNoticeViewTypeError = 0,
+    WBNoticeViewTypeSuccess
+} WBNoticeViewType;
+
 + (WBNoticeView *)defaultManager;
 
 // Error notice methods

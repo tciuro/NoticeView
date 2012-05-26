@@ -7,14 +7,10 @@
 //
 
 #import "WBNoticeView.h"
+#import "WBNoticeView_Private.h"
 #import "UILabel+WBExtensions.h"
 
 #import <QuartzCore/QuartzCore.h>
-
-typedef enum {
-    WBNoticeViewTypeError = 0,
-    WBNoticeViewTypeSuccess
-} WBNoticeViewType;
 
 @interface WBNoticeView ()
 
@@ -22,15 +18,6 @@ typedef enum {
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *messageLabel;
-
-- (void)_showNoticeOfType:(WBNoticeViewType)noticeType
-                     view:(UIView *)view
-                    title:(NSString *)title
-                  message:(NSString *)message
-                 duration:(float)duration
-                    delay:(float)delay
-                    alpha:(float)alpha
-                  yOrigin:(CGFloat)origin;
 
 @end
 
@@ -157,7 +144,7 @@ typedef enum {
                     alpha:(float)alpha
                   yOrigin:(CGFloat)origin
 {
-    if (nil == noticeView) {
+    if (nil == self.noticeView) {
         // Sanity check
         if (nil == view) {
             [[NSException exceptionWithName:NSInvalidArgumentException
@@ -170,7 +157,8 @@ typedef enum {
         if (nil == message) message = @"Information not provided.";
         if (0.0 == duration) duration = 0.5;
         if (0.0 == delay) delay = 2.0;
-        
+        if (0.0 == alpha) alpha = 1.0;
+
         // Obtain the screen width
         CGFloat viewWidth = view.frame.size.width;
         
@@ -271,10 +259,10 @@ typedef enum {
                 } completion:^ (BOOL finished) {
                     if (finished) {                        
                         // Cleanup
-                        noticeView = nil;
-                        imageView = nil;
-                        titleLabel = nil;
-                        messageLabel = nil;
+                        self.noticeView = nil;
+                        self.imageView = nil;
+                        self.titleLabel = nil;
+                        self.messageLabel = nil;
                     }
                 }];
             }

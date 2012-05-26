@@ -27,6 +27,8 @@
 
 #import "WBViewController.h"
 #import "WBNoticeView.h"
+#import "WBErrorNoticeView.h"
+#import "WBSuccessNoticeView.h"
 
 @interface WBViewController ()
 
@@ -63,55 +65,50 @@
 
 - (IBAction)showSmallErrorNotice:(id)sender
 {
-    WBNoticeView *nm = [WBNoticeView defaultManager];
-    [nm showErrorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+    [notice show];
 }
 
 - (IBAction)showLargeErrorNotice:(id)sender
 {
-    WBNoticeView *nm = [WBNoticeView defaultManager];
-    [nm showErrorNoticeInView:self.view title:@"Network Error" message:@"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."];
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."];
+    [notice show];
 }
 
 - (IBAction)showSmallSuccessNotice:(id)sender
 {
-    WBNoticeView *nm = [WBNoticeView defaultManager];
-    [nm showSuccessNoticeInView:self.view message:@"Link Saved Successfully"];
+    WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:@"Link Saved Successfully"];
+    [notice show];
 }
 
 - (IBAction)showSmallErrorNoticeBelow:(id)sender
 {
-    WBNoticeView *nm = [WBNoticeView defaultManager];
-    [nm showErrorNoticeInView:self.view
-                        title:@"Network Error"
-                      message:@"Check your network connection."
-                     duration:0.0
-                        delay:0.0
-                        alpha:0.8
-                      yOrigin:self.headerView.frame.size.height];
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+    
+    notice.alpha = 0.8;
+    notice.originY = self.headerView.frame.size.height;
+    
+    [notice show];
 }
 
 - (IBAction)showLargeErrorNoticeBelow:(id)sender
 {
-    WBNoticeView *nm = [WBNoticeView defaultManager];
-    [nm showErrorNoticeInView:self.view
-                        title:@"Network Error"
-                      message:@"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-                     duration:0.0
-                        delay:0.0
-                        alpha:0.8
-                      yOrigin:self.headerView.frame.size.height];
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."];
+    
+    notice.alpha = 0.8;
+    notice.originY = self.headerView.frame.size.height;
+    
+    [notice show];
 }
 
 - (IBAction)showSmallSuccessNoticeBelow:(id)sender
 {
-    WBNoticeView *nm = [WBNoticeView defaultManager];
-    [nm showSuccessNoticeInView:self.view
-                      message:@"Link Saved Successfully"
-                     duration:0.0
-                        delay:0.0
-                        alpha:0.8
-                      yOrigin:self.headerView.frame.size.height];
+    WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:@"Link Saved Successfully"];
+    
+    notice.alpha = 0.8;
+    notice.originY = self.headerView.frame.size.height;
+    
+    [notice show];
 }
 
 @end

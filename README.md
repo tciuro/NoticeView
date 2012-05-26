@@ -3,7 +3,7 @@
 A TweetBot-like notice component for iOS.
 
 <br/>
-![Alt text](http://cloud.github.com/downloads/tciuro/NoticeView/screenshot_2.0.png)
+![Alt text](http://cloud.github.com/downloads/tciuro/NoticeView/screenshot_2.0.1.png)
 <br/>
 <br/>
 

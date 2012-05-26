@@ -171,12 +171,8 @@ typedef enum {
         if (0.0 == duration) duration = 0.5;
         if (0.0 == delay) delay = 2.0;
         
-        // Calculate screen width based on current rotation
-        UIDeviceOrientation orientation = [[UIDevice currentDevice]orientation];
+        // Obtain the screen width
         CGFloat viewWidth = view.frame.size.width;
-        if ((UIDeviceOrientationLandscapeLeft == orientation) || (UIDeviceOrientationLandscapeRight == orientation)) {       
-            viewWidth = view.frame.size.height;
-        }
         
         // Locate the images
         NSString *path = [[[NSBundle mainBundle]resourcePath]stringByAppendingPathComponent:@"NoticeView.bundle"];

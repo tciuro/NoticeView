@@ -37,7 +37,7 @@ The default values are the following:
 
         if (nil == title) title = @"Unknown Error";
         if (nil == message) message = @"Information not provided.";
-        if (0.0 == duration) duration = 0.3;
+        if (0.0 == duration) duration = 0.5;
         if (0.0 == delay) delay = 2.0;
 
 ## Contribute

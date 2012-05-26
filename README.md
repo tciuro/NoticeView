@@ -19,7 +19,7 @@ The behavior in version 1 was "fire and forget". Calling *showErrorNoticeInView*
 ### Examples
 
 Since version 2 is more flexible, I have eliminated the older examples and replaced them with the new API. Please note that the older API is still there, for backward compatibility.
-<br/><br/>
+<br/>
 
 To display a small error notice:
 

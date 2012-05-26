@@ -223,9 +223,11 @@
         self.imageView.image = [UIImage imageWithContentsOfFile:noticeBackgroundImageName];
         [self.noticeView addSubview:self.imageView];
         
-        // Make and add the warning icon view
-        UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(10.0, 8.0, 37.0, 34.0)];
+        // Make and add the icon view
+        UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(10.0, 10.0, 30.0, 30.0)];
         iconView.image = [UIImage imageWithContentsOfFile:noticeIconImageName];
+        iconView.contentMode = UIViewContentModeScaleAspectFit;
+        iconView.alpha = 0.8;
         [self.noticeView addSubview:iconView];
         
         // Add the title label

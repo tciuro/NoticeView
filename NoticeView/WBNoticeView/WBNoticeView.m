@@ -22,7 +22,6 @@ typedef enum {
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *messageLabel;
-@property(nonatomic, assign) CGFloat screenWidth;
 
 - (void)_showNoticeOfType:(WBNoticeViewType)noticeType
                      view:(UIView *)view
@@ -37,7 +36,7 @@ typedef enum {
 
 @implementation WBNoticeView
 
-@synthesize noticeView, imageView, titleLabel, messageLabel, screenWidth;
+@synthesize noticeView, imageView, titleLabel, messageLabel;
 
 + (WBNoticeView *)defaultManager
 {
@@ -48,21 +47,6 @@ typedef enum {
     }
     
     return __sWBNoticeView;
-}
-
-- (id)init
-{
-    if (self == [super init]) {
-        [self didRotateDevice:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didRotateDevice:) name:UIDeviceOrientationDidChangeNotification object:nil];
-    }
-    
-    return self;
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 #pragma mark - Error Notice Methods
@@ -162,21 +146,6 @@ typedef enum {
                     yOrigin:origin];
 }
 
-#pragma mark - Delegate Methods
-
-- (void)didRotateDevice:(NSNotification *)notification
-{   
-    CGRect screenBounds = [UIScreen mainScreen].bounds;
-    UIDeviceOrientation orientation = [[UIDevice currentDevice]orientation];
-    
-    if ((UIDeviceOrientationLandscapeLeft == orientation) || 
-        (UIDeviceOrientationLandscapeRight == orientation)) {       
-        self.screenWidth = screenBounds.size.height;
-    } else {
-        self.screenWidth = screenBounds.size.width;
-    }
-}
-
 #pragma mark - Private Section
 
 - (void)_showNoticeOfType:(WBNoticeViewType)noticeType
@@ -199,8 +168,15 @@ typedef enum {
         // Set default values if needed
         if (nil == title) title = @"Unknown Error";
         if (nil == message) message = @"Information not provided.";
-        if (0.0 == duration) duration = 0.3;
+        if (0.0 == duration) duration = 0.5;
         if (0.0 == delay) delay = 2.0;
+        
+        // Calculate screen width based on current rotation
+        UIDeviceOrientation orientation = [[UIDevice currentDevice]orientation];
+        CGFloat viewWidth = view.frame.size.width;
+        if ((UIDeviceOrientationLandscapeLeft == orientation) || (UIDeviceOrientationLandscapeRight == orientation)) {       
+            viewWidth = view.frame.size.height;
+        }
         
         // Locate the images
         NSString *path = [[[NSBundle mainBundle]resourcePath]stringByAppendingPathComponent:@"NoticeView.bundle"];
@@ -211,7 +187,7 @@ typedef enum {
         
         // Make and add the title label
         float titleYOrigin = (WBNoticeViewTypeError == noticeType ? 10.0 : 18.0);
-        self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, titleYOrigin, self.screenWidth - 70.0, 16.0)];
+        self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, titleYOrigin, viewWidth - 70.0, 16.0)];
         self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
         self.titleLabel.textColor = [UIColor whiteColor];
         self.titleLabel.backgroundColor = [UIColor clearColor];
@@ -221,7 +197,7 @@ typedef enum {
         
         if (WBNoticeViewTypeError == noticeType) {
             // Make the message label
-            self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, 10.0 + 10.0, screenWidth - 70.0, messageLineHeight)];
+            self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, 10.0 + 10.0, viewWidth - 70.0, messageLineHeight)];
             self.messageLabel.font = [UIFont systemFontOfSize:13.0];
             self.messageLabel.textColor = [UIColor colorWithRed:239.0/255.0 green:167.0/255.0 blue:163.0/255.0 alpha:1.0];
             self.messageLabel.backgroundColor = [UIColor clearColor];
@@ -239,7 +215,7 @@ typedef enum {
             // Now we can determine the height of one line of text
             messageLineHeight = self.messageLabel.frame.size.height;
             r.size.height = self.messageLabel.frame.size.height * numberOfLines;
-            r.size.width = self.screenWidth - 70.0;
+            r.size.width = viewWidth - 70.0;
             self.messageLabel.frame = r;
         }
         
@@ -254,11 +230,11 @@ typedef enum {
         hiddenYOrigin = -noticeViewHeight - 20.0;
         
         // Make and add the notice view
-        self.noticeView = [[UIView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, screenWidth, noticeViewHeight + 10.0)];
+        self.noticeView = [[UIView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];
         [view addSubview:self.noticeView];
         
         // Make and add the image view
-        self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, screenWidth, noticeViewHeight + 10.0)];
+        self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, viewWidth, noticeViewHeight + 10.0)];
         [self.imageView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
         self.imageView.image = [UIImage imageWithContentsOfFile:noticeBackgroundImageName];
         [self.noticeView addSubview:self.imageView];

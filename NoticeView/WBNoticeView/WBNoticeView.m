@@ -261,6 +261,7 @@
                 } completion:^ (BOOL finished) {
                     if (finished) {                        
                         // Cleanup
+                        [self.noticeView removeFromSuperview];
                         self.noticeView = nil;
                         self.imageView = nil;
                         self.titleLabel = nil;

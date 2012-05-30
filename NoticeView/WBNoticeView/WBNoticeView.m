@@ -145,19 +145,13 @@
                   yOrigin:(CGFloat)origin
 {
     if (nil == self.noticeView) {
-        // Sanity check
-        if (nil == view) {
-            [[NSException exceptionWithName:NSInvalidArgumentException
-                                     reason:[NSString stringWithFormat:@"*** -[%@ %@]: 'view' cannot be nil.", [self class], NSStringFromSelector(_cmd)]
-                                   userInfo:nil]raise];  
-        }
-        
         // Set default values if needed
         if (nil == title) title = @"Unknown Error";
         if (nil == message) message = @"Information not provided.";
         if (0.0 == duration) duration = 0.5;
         if (0.0 == delay) delay = 2.0;
         if (0.0 == alpha) alpha = 1.0;
+        if (origin < 0.0) origin = 0.0;
 
         // Obtain the screen width
         CGFloat viewWidth = view.frame.size.width;

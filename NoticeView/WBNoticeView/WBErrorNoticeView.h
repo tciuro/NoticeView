@@ -12,6 +12,6 @@
 
 + (WBErrorNoticeView *)errorNoticeInView:(UIView *)view title:(NSString *)title message:(NSString *)message;
 
-@property (nonatomic, strong) NSString *message;
+@property (nonatomic, strong) NSString *message; // default: @"Information not provided."
 
 @end

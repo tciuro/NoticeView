@@ -153,14 +153,14 @@
 		746CBD051570A88800B844B1 /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				746CBCFA15709E8300B844B1 /* WBBaseNoticeView.h */,
+				746CBCFB15709E8300B844B1 /* WBBaseNoticeView.m */,
 				592BDDE715645BEE00B78820 /* WBNoticeView.h */,
 				592BDDE815645BEE00B78820 /* WBNoticeView.m */,
 				746CBD011570A65D00B844B1 /* WBNoticeView_Private.h */,
 				592BDDE415645BEE00B78820 /* NoticeView.bundle */,
 				592BDDE515645BEE00B78820 /* UILabel+WBExtensions.h */,
 				592BDDE615645BEE00B78820 /* UILabel+WBExtensions.m */,
-				746CBCFA15709E8300B844B1 /* WBBaseNoticeView.h */,
-				746CBCFB15709E8300B844B1 /* WBBaseNoticeView.m */,
 			);
 			name = Private;
 			sourceTree = "<group>";

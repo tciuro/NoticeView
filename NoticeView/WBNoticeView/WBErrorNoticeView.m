@@ -15,10 +15,8 @@
 
 + (WBErrorNoticeView *)errorNoticeInView:(UIView *)view title:(NSString *)title message:(NSString *)message
 {
-    WBErrorNoticeView *notice = [WBErrorNoticeView new];
+    WBErrorNoticeView *notice = [[WBErrorNoticeView alloc]initWithView:view title:title];
     
-    notice.view = view;
-    notice.title = title;
     notice.message = message;
     
     return notice;

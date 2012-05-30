@@ -61,6 +61,7 @@ The default values are the following:
         if (0.0 == duration) duration = 0.5;
         if (0.0 == delay) delay = 2.0;
         if (0.0 == alpha) alpha = 1.0;
+		if (origin < 0.0) origin = 0.0;
 
 ## Contribute
 

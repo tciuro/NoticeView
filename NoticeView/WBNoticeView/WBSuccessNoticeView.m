@@ -15,11 +15,8 @@
 
 + (WBSuccessNoticeView *)successNoticeInView:(UIView *)view title:(NSString *)title
 {
-    WBSuccessNoticeView *notice = [WBSuccessNoticeView new];
-    
-    notice.view = view;
-    notice.title = title;
-    
+    WBSuccessNoticeView *notice = [[WBSuccessNoticeView alloc]initWithView:view title:title];
+
     return notice;
 }
 

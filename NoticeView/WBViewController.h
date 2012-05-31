@@ -39,4 +39,6 @@
 - (IBAction)showLargeErrorNoticeBelow:(id)sender;
 - (IBAction)showSmallSuccessNoticeBelow:(id)sender;
 
+- (IBAction)showSmallErrorNoticeAndPush:(id)sender;
+
 @end

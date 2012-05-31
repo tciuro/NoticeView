@@ -19,6 +19,8 @@
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *messageLabel;
 
+- (void)cleanup;
+
 @end
 
 @implementation WBNoticeView
@@ -253,18 +255,30 @@
                     newFrame.origin.y = hiddenYOrigin;
                     self.noticeView.frame = newFrame;
                 } completion:^ (BOOL finished) {
-                    if (finished) {                        
+                    if (finished) {  
                         // Cleanup
-                        [self.noticeView removeFromSuperview];
-                        self.noticeView = nil;
-                        self.imageView = nil;
-                        self.titleLabel = nil;
-                        self.messageLabel = nil;
+                        [self cleanup];
                     }
                 }];
             }
         }];
     }
 }
+
+- (void)cleanup
+{
+    [self.noticeView removeFromSuperview];
+    self.noticeView = nil;
+    self.imageView = nil;
+    self.titleLabel = nil;
+    self.messageLabel = nil;
+}
+
+- (void)dealloc
+{
+    [self cleanup];
+}
+
+
 
 @end

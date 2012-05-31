@@ -111,4 +111,12 @@
     [notice show];
 }
 
+- (IBAction)showSmallErrorNoticeAndPush:(id)sender
+{
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+    [notice show];
+    
+    [self.navigationController pushViewController: [[WBViewController alloc] init] animated:YES];
+}
+
 @end

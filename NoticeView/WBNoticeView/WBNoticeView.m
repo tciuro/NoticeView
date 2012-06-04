@@ -8,6 +8,8 @@
 
 #import "WBNoticeView.h"
 #import "WBNoticeView_Private.h"
+#import "WBRedGradientView.h"
+#import "WBBlueGradientView.h"
 #import "UILabel+WBExtensions.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -15,7 +17,6 @@
 @interface WBNoticeView ()
 
 @property(nonatomic, strong) UIView *noticeView;
-@property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *messageLabel;
 
@@ -25,7 +26,7 @@
 
 @implementation WBNoticeView
 
-@synthesize noticeView, imageView, titleLabel, messageLabel;
+@synthesize noticeView, titleLabel, messageLabel;
 
 + (WBNoticeView *)defaultManager
 {
@@ -160,7 +161,6 @@
         
         // Locate the images
         NSString *path = [[[NSBundle mainBundle]resourcePath]stringByAppendingPathComponent:@"NoticeView.bundle"];
-        NSString *noticeBackgroundImageName = [path stringByAppendingPathComponent:(WBNoticeViewTypeError == noticeType ? @"notice_error.png" : @"notice_success.png")];
         NSString *noticeIconImageName = [path stringByAppendingPathComponent:(WBNoticeViewTypeError == noticeType ? @"notice_error_icon.png" : @"notice_success_icon.png")];
         NSInteger numberOfLines = 1;
         CGFloat messageLineHeight = 30.0;
@@ -210,14 +210,12 @@
         hiddenYOrigin = -noticeViewHeight - 20.0;
         
         // Make and add the notice view
-        self.noticeView = [[UIView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];
+        if (WBNoticeViewTypeError == noticeType) {
+            self.noticeView = [[WBRedGradientView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];
+        } else {
+            self.noticeView = [[WBBlueGradientView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];
+        }
         [view addSubview:self.noticeView];
-        
-        // Make and add the image view
-        self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, viewWidth, noticeViewHeight + 10.0)];
-        [self.imageView setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-        self.imageView.image = [UIImage imageWithContentsOfFile:noticeBackgroundImageName];
-        [self.noticeView addSubview:self.imageView];
         
         // Make and add the icon view
         UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(10.0, 10.0, 30.0, 30.0)];
@@ -234,12 +232,12 @@
             [self.noticeView addSubview:self.messageLabel];
         }
         
-        // Add the drop shadow to  profileImageView
-        self.imageView.layer.shadowColor = [[UIColor blackColor]CGColor];
-        self.imageView.layer.shadowOffset = CGSizeMake(0.0, 3);
-        self.imageView.layer.shadowOpacity = 0.50;
-        self.imageView.layer.masksToBounds = NO;
-        self.imageView.layer.shouldRasterize = YES;
+        // Add the drop shadow to the notice view
+        self.noticeView.layer.shadowColor = [[UIColor blackColor]CGColor];
+        self.noticeView.layer.shadowOffset = CGSizeMake(0.0, 3);
+        self.noticeView.layer.shadowOpacity = 0.50;
+        self.noticeView.layer.masksToBounds = NO;
+        self.noticeView.layer.shouldRasterize = YES;
         
         // Go ahead, display it and then hide it automatically
         [UIView animateWithDuration:duration animations:^ {
@@ -269,7 +267,6 @@
 {
     [self.noticeView removeFromSuperview];
     self.noticeView = nil;
-    self.imageView = nil;
     self.titleLabel = nil;
     self.messageLabel = nil;
 }

@@ -25,6 +25,8 @@
 		746CBCFC15709E8300B844B1 /* WBBaseNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 746CBCFB15709E8300B844B1 /* WBBaseNoticeView.m */; };
 		746CBD001570A1D100B844B1 /* WBErrorNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 746CBCFF1570A1D100B844B1 /* WBErrorNoticeView.m */; };
 		746CBD081570A8FA00B844B1 /* WBSuccessNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 746CBD071570A8FA00B844B1 /* WBSuccessNoticeView.m */; };
+		7492FA45157C8CD700FB834C /* WBBlueGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7492FA42157C8CD700FB834C /* WBBlueGradientView.m */; };
+		7492FA46157C8CD700FB834C /* WBRedGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7492FA44157C8CD700FB834C /* WBRedGradientView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,10 @@
 		746CBD011570A65D00B844B1 /* WBNoticeView_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBNoticeView_Private.h; sourceTree = "<group>"; };
 		746CBD061570A8FA00B844B1 /* WBSuccessNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSuccessNoticeView.h; sourceTree = "<group>"; };
 		746CBD071570A8FA00B844B1 /* WBSuccessNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSuccessNoticeView.m; sourceTree = "<group>"; };
+		7492FA41157C8CD700FB834C /* WBBlueGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBBlueGradientView.h; sourceTree = "<group>"; };
+		7492FA42157C8CD700FB834C /* WBBlueGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBBlueGradientView.m; sourceTree = "<group>"; };
+		7492FA43157C8CD700FB834C /* WBRedGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBRedGradientView.h; sourceTree = "<group>"; };
+		7492FA44157C8CD700FB834C /* WBRedGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBRedGradientView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +167,10 @@
 				592BDDE415645BEE00B78820 /* NoticeView.bundle */,
 				592BDDE515645BEE00B78820 /* UILabel+WBExtensions.h */,
 				592BDDE615645BEE00B78820 /* UILabel+WBExtensions.m */,
+				7492FA41157C8CD700FB834C /* WBBlueGradientView.h */,
+				7492FA42157C8CD700FB834C /* WBBlueGradientView.m */,
+				7492FA43157C8CD700FB834C /* WBRedGradientView.h */,
+				7492FA44157C8CD700FB834C /* WBRedGradientView.m */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -241,6 +251,8 @@
 				746CBCFC15709E8300B844B1 /* WBBaseNoticeView.m in Sources */,
 				746CBD001570A1D100B844B1 /* WBErrorNoticeView.m in Sources */,
 				746CBD081570A8FA00B844B1 /* WBSuccessNoticeView.m in Sources */,
+				7492FA45157C8CD700FB834C /* WBBlueGradientView.m in Sources */,
+				7492FA46157C8CD700FB834C /* WBRedGradientView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

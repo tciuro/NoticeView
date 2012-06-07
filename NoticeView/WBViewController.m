@@ -29,6 +29,7 @@
 #import "WBNoticeView.h"
 #import "WBErrorNoticeView.h"
 #import "WBSuccessNoticeView.h"
+#import "WBStickyNoticeView.h"
 
 @interface WBViewController ()
 
@@ -81,6 +82,12 @@
     [notice show];
 }
 
+- (IBAction)showSmallStickyNotice:(id)sender
+{
+    WBStickyNoticeView *notice = [WBStickyNoticeView stickyNoticeInView:self.view title:@"7 New Tweets."];
+    [notice show];
+}
+
 - (IBAction)showSmallErrorNoticeBelow:(id)sender
 {
     WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
@@ -111,9 +118,26 @@
     [notice show];
 }
 
+- (IBAction)showSmallStickyNoticeBelow:(id)sender
+{
+    WBStickyNoticeView *notice = [WBStickyNoticeView stickyNoticeInView:self.view title:@"7 New Tweets arrived somewhere from the intertubes."];
+    
+    notice.originY = self.headerView.frame.size.height;
+
+    [notice show];
+}
+
 - (IBAction)showSmallErrorNoticeAndPush:(id)sender
 {
     WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+    [notice show];
+    
+    [self.navigationController pushViewController: [[WBViewController alloc] init] animated:YES];
+}
+
+- (IBAction)showStickyNoticeAndPush:(id)sender
+{
+    WBStickyNoticeView *notice = [WBStickyNoticeView stickyNoticeInView:self.view title:@"7 New Tweets arrived somewhere from the intertubes."];
     [notice show];
     
     [self.navigationController pushViewController: [[WBViewController alloc] init] animated:YES];

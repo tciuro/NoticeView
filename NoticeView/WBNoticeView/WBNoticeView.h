@@ -12,7 +12,8 @@
 
 typedef enum {
     WBNoticeViewTypeError = 0,
-    WBNoticeViewTypeSuccess
+    WBNoticeViewTypeSuccess,
+    WBNoticeViewTypeSticky
 } WBNoticeViewType;
 
 + (WBNoticeView *)defaultManager;
@@ -49,5 +50,13 @@ typedef enum {
                           delay:(float)delay
                           alpha:(float)alpha
                         yOrigin:(CGFloat)origin;
+
+// Sticky notice methods
+
+- (void)showStickyNoticeInView:(UIView *)view
+                       message:(NSString *)message
+                      duration:(float)duration
+                         alpha:(float)alpha
+                       yOrigin:(CGFloat)origin;
 
 @end

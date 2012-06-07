@@ -22,6 +22,14 @@
                     alpha:(float)alpha
                   yOrigin:(CGFloat)origin;
 
+- (void)_showErrorNoticeInView:(UIView *)view
+                         title:(NSString *)title
+                       message:(NSString *)message
+                      duration:(float)duration
+                         delay:(float)delay
+                         alpha:(float)alpha
+                       yOrigin:(CGFloat)origin;
+
 @end
 
 #endif

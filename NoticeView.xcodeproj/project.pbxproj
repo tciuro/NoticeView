@@ -25,6 +25,8 @@
 		746CBCFC15709E8300B844B1 /* WBBaseNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 746CBCFB15709E8300B844B1 /* WBBaseNoticeView.m */; };
 		746CBD001570A1D100B844B1 /* WBErrorNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 746CBCFF1570A1D100B844B1 /* WBErrorNoticeView.m */; };
 		746CBD081570A8FA00B844B1 /* WBSuccessNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 746CBD071570A8FA00B844B1 /* WBSuccessNoticeView.m */; };
+		748A6A59157D0B74003C7655 /* WBGrayGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 748A6A58157D0B74003C7655 /* WBGrayGradientView.m */; };
+		748A6A5D157D0D06003C7655 /* WBStickyNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 748A6A5C157D0D06003C7655 /* WBStickyNoticeView.m */; };
 		7492FA45157C8CD700FB834C /* WBBlueGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7492FA42157C8CD700FB834C /* WBBlueGradientView.m */; };
 		7492FA46157C8CD700FB834C /* WBRedGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7492FA44157C8CD700FB834C /* WBRedGradientView.m */; };
 /* End PBXBuildFile section */
@@ -59,6 +61,10 @@
 		746CBD011570A65D00B844B1 /* WBNoticeView_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBNoticeView_Private.h; sourceTree = "<group>"; };
 		746CBD061570A8FA00B844B1 /* WBSuccessNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSuccessNoticeView.h; sourceTree = "<group>"; };
 		746CBD071570A8FA00B844B1 /* WBSuccessNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSuccessNoticeView.m; sourceTree = "<group>"; };
+		748A6A57157D0B74003C7655 /* WBGrayGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBGrayGradientView.h; sourceTree = "<group>"; };
+		748A6A58157D0B74003C7655 /* WBGrayGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBGrayGradientView.m; sourceTree = "<group>"; };
+		748A6A5B157D0D06003C7655 /* WBStickyNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBStickyNoticeView.h; sourceTree = "<group>"; };
+		748A6A5C157D0D06003C7655 /* WBStickyNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBStickyNoticeView.m; sourceTree = "<group>"; };
 		7492FA41157C8CD700FB834C /* WBBlueGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBBlueGradientView.h; sourceTree = "<group>"; };
 		7492FA42157C8CD700FB834C /* WBBlueGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBBlueGradientView.m; sourceTree = "<group>"; };
 		7492FA43157C8CD700FB834C /* WBRedGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBRedGradientView.h; sourceTree = "<group>"; };
@@ -97,6 +103,8 @@
 				746CBCFF1570A1D100B844B1 /* WBErrorNoticeView.m */,
 				746CBD061570A8FA00B844B1 /* WBSuccessNoticeView.h */,
 				746CBD071570A8FA00B844B1 /* WBSuccessNoticeView.m */,
+				748A6A5B157D0D06003C7655 /* WBStickyNoticeView.h */,
+				748A6A5C157D0D06003C7655 /* WBStickyNoticeView.m */,
 				746CBD051570A88800B844B1 /* Private */,
 			);
 			path = WBNoticeView;
@@ -169,6 +177,8 @@
 				592BDDE615645BEE00B78820 /* UILabel+WBExtensions.m */,
 				7492FA41157C8CD700FB834C /* WBBlueGradientView.h */,
 				7492FA42157C8CD700FB834C /* WBBlueGradientView.m */,
+				748A6A57157D0B74003C7655 /* WBGrayGradientView.h */,
+				748A6A58157D0B74003C7655 /* WBGrayGradientView.m */,
 				7492FA43157C8CD700FB834C /* WBRedGradientView.h */,
 				7492FA44157C8CD700FB834C /* WBRedGradientView.m */,
 			);
@@ -253,6 +263,8 @@
 				746CBD081570A8FA00B844B1 /* WBSuccessNoticeView.m in Sources */,
 				7492FA45157C8CD700FB834C /* WBBlueGradientView.m in Sources */,
 				7492FA46157C8CD700FB834C /* WBRedGradientView.m in Sources */,
+				748A6A59157D0B74003C7655 /* WBGrayGradientView.m in Sources */,
+				748A6A5D157D0D06003C7655 /* WBStickyNoticeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

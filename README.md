@@ -16,6 +16,13 @@ A TweetBot-like notice component for iOS.
 
 The behavior in version 1 was "fire and forget". Calling *showErrorNoticeInView* or *showSuccessNoticeInView* displayed the notice, but there was no way to retain it for later use. Version 2 allows the developer to instantiate a notice, customize it (optional) and show it. Not only it's possible to retain it, but also customize it anytime with say, a different title and message. Oh, yeah… and it's cleaner too.
 
+### New in 2.1: Sticky Notice
+
+New in 2.1 is a different type of notice: Sticky. As it name implies, the notice will remain visible until the user taps on it to dismiss it. The usage follows the Error and Success notice pattern:
+
+    WBStickyNoticeView *notice = [WBStickyNoticeView stickyNoticeInView:self.view title:@"7 New Tweets."];
+    [notice show];
+
 ### Examples
 
 Since version 2 is more flexible, I have eliminated the older examples and replaced them with the new API. Please note that the older API is still there, for backward compatibility.

@@ -491,8 +491,6 @@
     self._alpha = alpha;
     self._hiddenYOrigin = hiddenYOrigin;
     
-    NSLog(@"%@", self.noticeView.subviews);
-    
     [self displayNoticeOfType:WBNoticeViewTypeSticky duration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
 }
 

@@ -258,9 +258,6 @@
     NSString *path = [[[NSBundle mainBundle]resourcePath]stringByAppendingPathComponent:@"NoticeView.bundle"];
     NSString *noticeIconImageName = [path stringByAppendingPathComponent:@"notice_error_icon.png"];
     
-    NSInteger numberOfLines = 1;
-    CGFloat messageLineHeight = 30.0;
-    
     // Make and add the title label
     float titleYOrigin = 10.0;
     
@@ -273,36 +270,43 @@
     self.titleLabel.text = title;
     
     // Make the message label
-    self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, 10.0 + 10.0, viewWidth - 70.0, messageLineHeight)];
+    self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, 20.0 + 10.0, viewWidth - 70.0, 12.0)];
     self.messageLabel.font = [UIFont systemFontOfSize:13.0];
     self.messageLabel.textColor = [UIColor colorWithRed:239.0/255.0 green:167.0/255.0 blue:163.0/255.0 alpha:1.0];
     self.messageLabel.backgroundColor = [UIColor clearColor];
     self.messageLabel.text = message;
     
     // Calculate the number of lines it'll take to display the text
-    numberOfLines = [[self.messageLabel lines]count];
+    NSInteger numberOfLines = [[self.messageLabel lines]count];
     self.messageLabel.numberOfLines = numberOfLines;
-    CGRect r = self.messageLabel.frame;
-    r.origin.y = self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height;//(1 == numberOfLines) ? self.titleLabel.frame.origin.y : self.titleLabel.frame.origin.y - 11.0;
-    
-    // This step is needed to avoid having the UILabel center the text in the middle
     [self.messageLabel sizeToFit];
+    CGFloat messageLabelHeight = self.messageLabel.frame.size.height;
     
-    // Now we can determine the height of one line of text
-    messageLineHeight = self.messageLabel.frame.size.height;
-    r.size.height = self.messageLabel.frame.size.height * numberOfLines;
-    r.size.width = viewWidth - 70.0;
-    self.messageLabel.frame = r;
+    CGRect r = self.messageLabel.frame;
+    r.origin.y = self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height;
     
-    // Calculate the notice view height
-    float noticeViewHeight = 50.0;
-    float hiddenYOrigin = 0.0;
-    if (numberOfLines > 1) {
-        noticeViewHeight += (numberOfLines - 1) * messageLineHeight;
+    float noticeViewHeight = 0.0;
+    double currOsVersion = [[[UIDevice currentDevice]systemVersion]doubleValue];
+    if (currOsVersion >= 6.0f) {
+        noticeViewHeight = messageLabelHeight;
+    } else {
+        // Now we can determine the height of one line of text
+        r.size.height = self.messageLabel.frame.size.height * numberOfLines;
+        r.size.width = viewWidth - 70.0;
+        self.messageLabel.frame = r;
+        
+        // Calculate the notice view height
+        noticeViewHeight = 10.0;
+        if (numberOfLines > 1) {
+            noticeViewHeight += ((numberOfLines - 1) * messageLabelHeight);
+        }
     }
     
+    // Add some bottom margin for the notice view
+    noticeViewHeight += 30.0;
+    
     // Make sure we hide completely the view, including its shadow
-    hiddenYOrigin = -noticeViewHeight - 20.0;
+    float hiddenYOrigin = -noticeViewHeight - 20.0;
     
     // Make and add the notice view
     self.noticeView = [[WBRedGradientView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];

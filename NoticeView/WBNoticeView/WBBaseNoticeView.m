@@ -14,7 +14,7 @@
 {
     [WBBaseNoticeView raiseIfObjectIsNil:theView named:@"view"];
     
-    if (self == [super init]) {
+    if (self = [super init]) {
         self.view = theView;
         self.title = theTitle;
     }
@@ -38,7 +38,7 @@
         NSLog(@"%@", [NSThread callStackSymbols]);
         
         [[NSException exceptionWithName:NSInvalidArgumentException
-                                 reason:[NSString stringWithFormat:@"*** -[%@ %s]: '%@' cannot be nil.", [self class], _cmd, name]
+                                 reason:[NSString stringWithFormat:@"*** -[%@ %@]: '%@' cannot be nil.", [self class], NSStringFromSelector(_cmd), name]
                                userInfo:nil]raise];
     }
 }

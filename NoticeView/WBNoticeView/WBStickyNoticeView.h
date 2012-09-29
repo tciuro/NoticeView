@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Tito Ciuro. All rights reserved.
 //
 
-#import "WBBaseNoticeView.h"
+#import "WBNoticeView.h"
 
-@interface WBStickyNoticeView : WBBaseNoticeView
+@interface WBStickyNoticeView : WBNoticeView
 
 + (WBStickyNoticeView *)stickyNoticeInView:(UIView *)view title:(NSString *)title;
 

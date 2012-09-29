@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Tito Ciuro. All rights reserved.
 //
 
-#import "WBBaseNoticeView.h"
+#import "WBNoticeView.h"
 
-@interface WBSuccessNoticeView : WBBaseNoticeView
+@interface WBSuccessNoticeView : WBNoticeView
 
 + (WBSuccessNoticeView *)successNoticeInView:(UIView *)view title:(NSString *)title;
 

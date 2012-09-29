@@ -16,7 +16,21 @@ typedef enum {
     WBNoticeViewTypeSticky
 } WBNoticeViewType;
 
+@property (nonatomic, readwrite) WBNoticeViewType noticeType;
+
+@property (nonatomic, strong) UIView *view;
+@property (nonatomic, strong) NSString *title; // default: @"Unknown Error"
+
+@property (nonatomic, readwrite) CGFloat duration; // default: 0.5
+@property (nonatomic, readwrite) CGFloat delay; // default: 2.0
+@property (nonatomic, readwrite) CGFloat alpha; // default: 1.0
+@property (nonatomic, readwrite) CGFloat originY; // default: 0.0
+
 + (WBNoticeView *)defaultManager;
+
+- (id)initWithView:(UIView *)theView title:(NSString *)theTitle; // throws NSInvalidArgumentException is view is nil.
+
+- (void)show; // Must be implemented in the subclasses, or else it'll raise an exception. 
 
 // Error notice methods
 

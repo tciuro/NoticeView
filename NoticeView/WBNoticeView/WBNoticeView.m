@@ -17,15 +17,12 @@
 
 @interface WBNoticeView ()
 
-@property(nonatomic, strong) UIView *noticeView;
+@property(nonatomic, strong) UIView *gradientView;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *messageLabel;
 
-@property(nonatomic, assign) CGFloat _duration;
-@property(nonatomic, assign) CGFloat _delay;
-@property(nonatomic, assign) CGFloat _alpha;
-@property(nonatomic, assign) CGFloat _hiddenYOrigin;
-@property(nonatomic, strong) WBNoticeView *_currentNotice;
+@property(nonatomic, assign) CGFloat hiddenYOrigin;
+@property(nonatomic, strong) WBNoticeView *currentNotice;
 
 - (void)_showErrorNoticeInView:(UIView *)view
                          title:(NSString *)title
@@ -69,12 +66,18 @@
 
 @implementation WBNoticeView
 
-@synthesize noticeView, titleLabel, messageLabel;
-@synthesize _duration;
-@synthesize _delay;
-@synthesize _alpha;
-@synthesize _hiddenYOrigin;
-@synthesize _currentNotice;
+@synthesize gradientView = _gradientView;
+@synthesize titleLabel = _titleLabel;
+@synthesize messageLabel = _messageLabel;
+@synthesize hiddenYOrigin = _hiddenYOrigin;
+@synthesize currentNotice = _currentNotice;
+@synthesize noticeType = _noticeType;
+@synthesize view = _view;
+@synthesize title = _title;
+@synthesize duration = _duration;
+@synthesize delay = _delay;
+@synthesize alpha = _alpha;
+@synthesize originY = _originY;
 
 + (WBNoticeView *)defaultManager
 {
@@ -85,6 +88,24 @@
     }
     
     return __sWBNoticeView;
+}
+
+- (id)initWithView:(UIView *)theView title:(NSString *)theTitle
+{
+    [WBNoticeView _raiseIfObjectIsNil:theView named:@"view"];
+    
+    if (self = [super init]) {
+        self.view = theView;
+        self.title = theTitle;
+    }
+    
+    return self;
+}
+
+- (void)show
+{
+    // Subclasses need to override this method...
+    [self doesNotRecognizeSelector:_cmd];
 }
 
 #pragma mark - Error Notice Methods
@@ -215,7 +236,7 @@
                     alpha:(float)alpha
                   yOrigin:(CGFloat)origin
 {
-    if (nil == self.noticeView) {
+    if (nil == self.gradientView) {
         
         // Set default values if needed
         if (nil == title) title = @"Unknown Error";
@@ -309,34 +330,34 @@
     float hiddenYOrigin = -noticeViewHeight - 20.0;
     
     // Make and add the notice view
-    self.noticeView = [[WBRedGradientView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];
-    [view addSubview:self.noticeView];
+    self.gradientView = [[WBRedGradientView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];
+    [view addSubview:self.gradientView];
     
     // Make and add the icon view
     UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(10.0, 10.0, 20.0, 30.0)];
     iconView.image = [UIImage imageWithContentsOfFile:noticeIconImageName];
     iconView.contentMode = UIViewContentModeScaleAspectFit;
     iconView.alpha = 0.8;
-    [self.noticeView addSubview:iconView];
+    [self.gradientView addSubview:iconView];
     
     // Add the title label
-    [self.noticeView addSubview:self.titleLabel];
+    [self.gradientView addSubview:self.titleLabel];
     
     // Add the message label
-    [self.noticeView addSubview:self.messageLabel];
+    [self.gradientView addSubview:self.messageLabel];
     
     // Add the drop shadow to the notice view
-    CALayer *noticeLayer = self.noticeView.layer;
+    CALayer *noticeLayer = self.gradientView.layer;
     noticeLayer.shadowColor = [[UIColor blackColor]CGColor];
     noticeLayer.shadowOffset = CGSizeMake(0.0, 3);
     noticeLayer.shadowOpacity = 0.50;
     noticeLayer.masksToBounds = NO;
     noticeLayer.shouldRasterize = YES;
     
-    self._duration = duration;
-    self._delay = delay;
-    self._alpha = alpha;
-    self._hiddenYOrigin = hiddenYOrigin;
+    self.duration = duration;
+    self.delay = delay;
+    self.alpha = alpha;
+    self.hiddenYOrigin = hiddenYOrigin;
     
     [self displayNoticeOfType:WBNoticeViewTypeError duration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
 }
@@ -380,31 +401,31 @@
     hiddenYOrigin = -noticeViewHeight - 20.0;
     
     // Make and add the notice view
-    self.noticeView = [[WBBlueGradientView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];
-    [view addSubview:self.noticeView];
+    self.gradientView = [[WBBlueGradientView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];
+    [view addSubview:self.gradientView];
     
     // Make and add the icon view
     UIImageView *iconView = [[UIImageView alloc]initWithFrame:CGRectMake(10.0, 10.0, 20.0, 30.0)];
     iconView.image = [UIImage imageWithContentsOfFile:noticeIconImageName];
     iconView.contentMode = UIViewContentModeScaleAspectFit;
     iconView.alpha = 0.8;
-    [self.noticeView addSubview:iconView];
+    [self.gradientView addSubview:iconView];
     
     // Add the title label
-    [self.noticeView addSubview:self.titleLabel];
+    [self.gradientView addSubview:self.titleLabel];
     
     // Add the drop shadow to the notice view
-    CALayer *noticeLayer = self.noticeView.layer;
+    CALayer *noticeLayer = self.gradientView.layer;
     noticeLayer.shadowColor = [[UIColor blackColor]CGColor];
     noticeLayer.shadowOffset = CGSizeMake(0.0, 3);
     noticeLayer.shadowOpacity = 0.50;
     noticeLayer.masksToBounds = NO;
     noticeLayer.shouldRasterize = YES;
     
-    self._duration = duration;
-    self._delay = delay;
-    self._alpha = alpha;
-    self._hiddenYOrigin = hiddenYOrigin;
+    self.duration = duration;
+    self.delay = delay;
+    self.alpha = alpha;
+    self.hiddenYOrigin = hiddenYOrigin;
     
     [self displayNoticeOfType:WBNoticeViewTypeSuccess duration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
 }
@@ -453,12 +474,12 @@
     hiddenYOrigin = -noticeViewHeight - 20.0;
     
     // Make and add the notice view
-    self.noticeView = [[WBGrayGradientView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, 32)];
-    [view addSubview:self.noticeView];
+    self.gradientView = [[WBGrayGradientView alloc]initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, 32)];
+    [view addSubview:self.gradientView];
     
     // Center the message in the middle of the notice
     frame = self.titleLabel.frame;
-    frame.origin.x = (self.noticeView.frame.size.width - frame.size.width) / 2;
+    frame.origin.x = (self.gradientView.frame.size.width - frame.size.width) / 2;
     self.titleLabel.frame = frame;
     
     // Make and add the icon view
@@ -468,13 +489,13 @@
     iconView.image = [UIImage imageWithContentsOfFile:noticeIconImageName];
     iconView.contentMode = UIViewContentModeScaleAspectFit;
     iconView.alpha = 0.8;
-    [self.noticeView addSubview:iconView];
+    [self.gradientView addSubview:iconView];
     
     // Add the title label
-    [self.noticeView addSubview:self.titleLabel];
+    [self.gradientView addSubview:self.titleLabel];
     
     // Add the drop shadow to the notice view
-    CALayer *noticeLayer = self.noticeView.layer;
+    CALayer *noticeLayer = self.gradientView.layer;
     noticeLayer.shadowColor = [[UIColor blackColor]CGColor];
     noticeLayer.shadowOffset = CGSizeMake(0.0, 3);
     noticeLayer.shadowOpacity = 0.50;
@@ -482,18 +503,18 @@
     noticeLayer.shouldRasterize = YES;
     
     // Add an invisible button that responds to a manual dismiss
-    self._currentNotice = self;
-    frame = self.noticeView.frame;
+    self.currentNotice = self;
+    frame = self.gradientView.frame;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     frame.origin.x = frame.origin.y = 0.0;
     button.frame = frame;
-    [button addTarget:self._currentNotice action:@selector(dismissStickyNotice:) forControlEvents:UIControlEventTouchUpInside];
-    [self.noticeView addSubview:button];
+    [button addTarget:self.currentNotice action:@selector(dismissStickyNotice:) forControlEvents:UIControlEventTouchUpInside];
+    [self.gradientView addSubview:button];
     
-    self._duration = duration;
-    self._delay = delay;
-    self._alpha = alpha;
-    self._hiddenYOrigin = hiddenYOrigin;
+    self.duration = duration;
+    self.delay = delay;
+    self.alpha = alpha;
+    self.hiddenYOrigin = hiddenYOrigin;
     
     [self displayNoticeOfType:WBNoticeViewTypeSticky duration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
 }
@@ -504,10 +525,10 @@
 {
     // Go ahead, display it
     [UIView animateWithDuration:duration animations:^ {
-        CGRect newFrame = self.noticeView.frame;
+        CGRect newFrame = self.gradientView.frame;
         newFrame.origin.y = origin;
-        self.noticeView.frame = newFrame;
-        self.noticeView.alpha = alpha;
+        self.gradientView.frame = newFrame;
+        self.gradientView.alpha = alpha;
     } completion:^ (BOOL finished) {
         if (finished) {
             // if it's not sticky, hide it automatically
@@ -522,9 +543,9 @@
 - (void)dismissNoticeOfType:(WBNoticeViewType)noticeType duration:(CGFloat)duration delay:(CGFloat)delay hiddenYOrigin:(CGFloat)hiddenYOrigin
 {
     [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^ {
-        CGRect newFrame = self.noticeView.frame;
+        CGRect newFrame = self.gradientView.frame;
         newFrame.origin.y = hiddenYOrigin;
-        self.noticeView.frame = newFrame;
+        self.gradientView.frame = newFrame;
     } completion:^ (BOOL finished) {
         if (finished) {  
             // Cleanup
@@ -536,23 +557,40 @@
 - (IBAction)dismissStickyNotice:(id)sender
 {
     // Triggered manually by the sticky notice
-    [self dismissNoticeOfType:WBNoticeViewTypeSticky duration:self._duration delay:self._delay hiddenYOrigin:self._hiddenYOrigin];
+    [self dismissNoticeOfType:WBNoticeViewTypeSticky duration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
 }
 
 #pragma mark -
 
 - (void)cleanup
 {
-    [self.noticeView removeFromSuperview];
-    self.noticeView = nil;
+    [self.gradientView removeFromSuperview];
+    self.gradientView = nil;
     self.titleLabel = nil;
     self.messageLabel = nil;
-    self._currentNotice = nil;
+    self.currentNotice = nil;
 }
 
 - (void)dealloc
 {
     [self cleanup];
+}
+
+#pragma mark -
+
++ (void)_raiseIfObjectIsNil:(id)object named:(NSString *)name
+{
+    if (nil == object) {
+        // If the name has not been supplied, name it generically
+        if (nil == name) name = @"<name not supplied>";
+        
+        // Log the stack trace
+        NSLog(@"%@", [NSThread callStackSymbols]);
+        
+        [[NSException exceptionWithName:NSInvalidArgumentException
+                                 reason:[NSString stringWithFormat:@"*** -[%@ %@]: '%@' cannot be nil.", [self class], NSStringFromSelector(_cmd), name]
+                               userInfo:nil]raise];
+    }
 }
 
 @end

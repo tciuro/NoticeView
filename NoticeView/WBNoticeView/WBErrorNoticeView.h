@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Tito Ciuro. All rights reserved.
 //
 
-#import "WBBaseNoticeView.h"
+#import "WBNoticeView.h"
 
-@interface WBErrorNoticeView : WBBaseNoticeView
+@interface WBErrorNoticeView : WBNoticeView
 
 + (WBErrorNoticeView *)errorNoticeInView:(UIView *)view title:(NSString *)title message:(NSString *)message;
 

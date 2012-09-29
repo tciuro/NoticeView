@@ -22,7 +22,6 @@
 		59A782461562F5F80001F08D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59A782441562F5F70001F08D /* MainStoryboard.storyboard */; };
 		59A782491562F5F80001F08D /* WBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A782481562F5F80001F08D /* WBViewController.m */; };
 		59A782591562F8750001F08D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59A782581562F8750001F08D /* QuartzCore.framework */; };
-		746CBCFC15709E8300B844B1 /* WBBaseNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 746CBCFB15709E8300B844B1 /* WBBaseNoticeView.m */; };
 		746CBD001570A1D100B844B1 /* WBErrorNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 746CBCFF1570A1D100B844B1 /* WBErrorNoticeView.m */; };
 		746CBD081570A8FA00B844B1 /* WBSuccessNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 746CBD071570A8FA00B844B1 /* WBSuccessNoticeView.m */; };
 		748A6A59157D0B74003C7655 /* WBGrayGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 748A6A58157D0B74003C7655 /* WBGrayGradientView.m */; };
@@ -54,8 +53,6 @@
 		59A782471562F5F80001F08D /* WBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBViewController.h; sourceTree = "<group>"; };
 		59A782481562F5F80001F08D /* WBViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBViewController.m; sourceTree = "<group>"; };
 		59A782581562F8750001F08D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		746CBCFA15709E8300B844B1 /* WBBaseNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBBaseNoticeView.h; sourceTree = "<group>"; };
-		746CBCFB15709E8300B844B1 /* WBBaseNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBBaseNoticeView.m; sourceTree = "<group>"; };
 		746CBCFE1570A1D100B844B1 /* WBErrorNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBErrorNoticeView.h; sourceTree = "<group>"; };
 		746CBCFF1570A1D100B844B1 /* WBErrorNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBErrorNoticeView.m; sourceTree = "<group>"; };
 		746CBD011570A65D00B844B1 /* WBNoticeView_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBNoticeView_Private.h; sourceTree = "<group>"; };
@@ -167,8 +164,6 @@
 		746CBD051570A88800B844B1 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				746CBCFA15709E8300B844B1 /* WBBaseNoticeView.h */,
-				746CBCFB15709E8300B844B1 /* WBBaseNoticeView.m */,
 				592BDDE715645BEE00B78820 /* WBNoticeView.h */,
 				592BDDE815645BEE00B78820 /* WBNoticeView.m */,
 				746CBD011570A65D00B844B1 /* WBNoticeView_Private.h */,
@@ -258,7 +253,6 @@
 				59A782491562F5F80001F08D /* WBViewController.m in Sources */,
 				592BDDEC15645BEE00B78820 /* UILabel+WBExtensions.m in Sources */,
 				592BDDED15645BEE00B78820 /* WBNoticeView.m in Sources */,
-				746CBCFC15709E8300B844B1 /* WBBaseNoticeView.m in Sources */,
 				746CBD001570A1D100B844B1 /* WBErrorNoticeView.m in Sources */,
 				746CBD081570A8FA00B844B1 /* WBSuccessNoticeView.m in Sources */,
 				7492FA45157C8CD700FB834C /* WBBlueGradientView.m in Sources */,

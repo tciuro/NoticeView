@@ -25,6 +25,7 @@ typedef enum {
 @property (nonatomic, readwrite) CGFloat delay; // default: 2.0
 @property (nonatomic, readwrite) CGFloat alpha; // default: 1.0
 @property (nonatomic, readwrite) CGFloat originY; // default: 0.0
+@property (nonatomic, readwrite, getter = isSticky) BOOL sticky; // default NO (Error and Success notice); YES (Sticky notice)
 
 + (WBNoticeView *)defaultManager;
 

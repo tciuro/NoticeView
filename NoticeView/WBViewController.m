@@ -143,4 +143,20 @@
     [self.navigationController pushViewController: [[WBViewController alloc] init] animated:YES];
 }
 
+- (IBAction)showStickyError:(id)sender
+{
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+    notice.sticky = YES;
+    [notice show];
+}
+
+- (IBAction)showStickyErrorNoticeAndPush:(id)sender
+{
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+    notice.sticky = YES;
+    [notice show];
+    
+    [self.navigationController pushViewController: [[WBViewController alloc] init] animated:YES];
+}
+
 @end

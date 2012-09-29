@@ -18,6 +18,7 @@
     WBErrorNoticeView *notice = [[WBErrorNoticeView alloc]initWithView:view title:title];
     
     notice.message = message;
+    notice.sticky = NO;
     
     return notice;
 }

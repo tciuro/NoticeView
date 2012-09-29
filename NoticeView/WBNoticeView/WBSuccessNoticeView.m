@@ -17,6 +17,8 @@
 {
     WBSuccessNoticeView *notice = [[WBSuccessNoticeView alloc]initWithView:view title:title];
 
+    notice.sticky = NO;
+
     return notice;
 }
 

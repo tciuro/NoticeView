@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="mRO-Fr-kEU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="mRO-Fr-kEU">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
-        <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
         <!--View Controller - NoticeView-->
         <scene sceneID="5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="WBViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
@@ -139,6 +137,21 @@
                                     <action selector="showSmallStickyNotice:" destination="2" eventType="touchUpInside" id="F96-6G-a61"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="L3v-hl-Vfi">
+                                <rect key="frame" x="22" y="288" width="130" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <state key="normal" title="Sticky Error">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showStickyError:" destination="2" eventType="touchUpInside" id="Ezy-Ea-k7g"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cee-Xq-cSc">
                                 <rect key="frame" x="22" y="244" width="130" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -169,6 +182,21 @@
                                     <action selector="showStickyNoticeAndPush:" destination="2" eventType="touchUpInside" id="5zd-aY-Mhi"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="m37-qX-16L">
+                                <rect key="frame" x="170" y="288" width="130" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <state key="normal" title="Sticky Error Push">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showStickyErrorNoticeAndPush:" destination="2" eventType="touchUpInside" id="86X-rG-EXs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -177,13 +205,13 @@
                         <outlet property="headerView" destination="yEx-cM-vtz" id="Pxy-W0-NzF"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="585" y="218"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TQy-EY-xtH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F0f-Kj-XaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController definesPresentationContext="YES" id="mRO-Fr-kEU" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="brG-MW-mKF">
                         <autoresizingMask key="autoresizingMask"/>
@@ -192,6 +220,7 @@
                         <segue destination="2" kind="relationship" relationship="rootViewController" id="ojO-yi-Vbu"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F0f-Kj-XaR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137" y="218"/>
         </scene>
@@ -208,9 +237,12 @@
                 <relationship kind="action" name="showSmallErrorNotice:"/>
                 <relationship kind="action" name="showSmallErrorNoticeAndPush:"/>
                 <relationship kind="action" name="showSmallErrorNoticeBelow:"/>
+                <relationship kind="action" name="showSmallStickyNotice:"/>
                 <relationship kind="action" name="showSmallStickyNoticeBelow:"/>
                 <relationship kind="action" name="showSmallSuccessNotice:"/>
                 <relationship kind="action" name="showSmallSuccessNoticeBelow:"/>
+                <relationship kind="action" name="showStickyError:"/>
+                <relationship kind="action" name="showStickyErrorNoticeAndPush:"/>
                 <relationship kind="action" name="showStickyNoticeAndPush:"/>
                 <relationship kind="outlet" name="headerView" candidateClass="UIImageView"/>
             </relationships>

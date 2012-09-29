@@ -17,6 +17,8 @@
 {
     WBStickyNoticeView *notice = [[WBStickyNoticeView alloc]initWithView:view title:title];
 
+    notice.sticky = YES;
+    
     return notice;
 }
 

@@ -48,15 +48,13 @@
                          alpha:(float)alpha
                        yOrigin:(CGFloat)origin;
 
-- (void)displayNoticeOfType:(WBNoticeViewType)noticeType
-                   duration:(CGFloat)duration
+- (void)displayNoticeWithDuration:(CGFloat)duration
                       delay:(CGFloat)delay
                      origin:(CGFloat)origin
               hiddenYOrigin:(CGFloat)hiddenYOrigin
                       alpha:(CGFloat)alpha;
 
-- (void)dismissNoticeOfType:(WBNoticeViewType)noticeType
-                   duration:(CGFloat)duration
+- (void)dismissNoticeWithDuration:(CGFloat)duration
                       delay:(CGFloat)delay
               hiddenYOrigin:(CGFloat)hiddenYOrigin;
 
@@ -78,6 +76,7 @@
 @synthesize delay = _delay;
 @synthesize alpha = _alpha;
 @synthesize originY = _originY;
+@synthesize sticky = _sticky;
 
 + (WBNoticeView *)defaultManager
 {
@@ -242,9 +241,14 @@
         if (nil == title) title = @"Unknown Error";
         if (nil == message) message = @"Information not provided.";
         if (0.0 == duration) duration = 0.5;
-        if ((0.0 == delay) && (WBNoticeViewTypeSticky != noticeType)) delay = 2.0;
         if (0.0 == alpha) alpha = 1.0;
         if (origin < 0.0) origin = 0.0;
+        
+        if (self.isSticky) {
+            delay = 0.0;
+        } else {
+            if (0.0 == delay) delay = 2.0;
+        }
         
         switch (noticeType) {
             case WBNoticeViewTypeError:
@@ -359,7 +363,7 @@
     self.alpha = alpha;
     self.hiddenYOrigin = hiddenYOrigin;
     
-    [self displayNoticeOfType:WBNoticeViewTypeError duration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
+    [self displayNoticeWithDuration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
 }
 
 - (void)_showSuccessNoticeInView:(UIView *)view
@@ -427,7 +431,7 @@
     self.alpha = alpha;
     self.hiddenYOrigin = hiddenYOrigin;
     
-    [self displayNoticeOfType:WBNoticeViewTypeSuccess duration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
+    [self displayNoticeWithDuration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
 }
 
 - (void)_showStickyNoticeInView:(UIView *)view
@@ -502,27 +506,30 @@
     noticeLayer.masksToBounds = NO;
     noticeLayer.shouldRasterize = YES;
     
-    // Add an invisible button that responds to a manual dismiss
-    self.currentNotice = self;
-    frame = self.gradientView.frame;
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    frame.origin.x = frame.origin.y = 0.0;
-    button.frame = frame;
-    [button addTarget:self.currentNotice action:@selector(dismissStickyNotice:) forControlEvents:UIControlEventTouchUpInside];
-    [self.gradientView addSubview:button];
-    
     self.duration = duration;
     self.delay = delay;
     self.alpha = alpha;
     self.hiddenYOrigin = hiddenYOrigin;
     
-    [self displayNoticeOfType:WBNoticeViewTypeSticky duration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
+    [self displayNoticeWithDuration:duration delay:delay origin:origin hiddenYOrigin:hiddenYOrigin alpha:alpha];
 }
 
 #pragma mark -
 
-- (void)displayNoticeOfType:(WBNoticeViewType)noticeType duration:(CGFloat)duration delay:(CGFloat)delay origin:(CGFloat)origin hiddenYOrigin:(CGFloat)hiddenYOrigin alpha:(CGFloat)alpha
+- (void)displayNoticeWithDuration:(CGFloat)duration delay:(CGFloat)delay origin:(CGFloat)origin hiddenYOrigin:(CGFloat)hiddenYOrigin alpha:(CGFloat)alpha
 {
+    // If the notice is sticky, add tap capabilities
+    if (self.isSticky) {
+        // Add an invisible button that responds to a manual dismiss
+        self.currentNotice = self;
+        CGRect frame = self.gradientView.frame;
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        frame.origin.x = frame.origin.y = 0.0;
+        button.frame = frame;
+        [button addTarget:self.currentNotice action:@selector(dismissStickyNotice:) forControlEvents:UIControlEventTouchUpInside];
+        [self.gradientView addSubview:button];
+    }
+    
     // Go ahead, display it
     [UIView animateWithDuration:duration animations:^ {
         CGRect newFrame = self.gradientView.frame;
@@ -532,15 +539,15 @@
     } completion:^ (BOOL finished) {
         if (finished) {
             // if it's not sticky, hide it automatically
-            if (WBNoticeViewTypeSticky != noticeType) {
+            if (NO == self.isSticky) {
                 // Display for a while, then hide it again
-                [self dismissNoticeOfType:noticeType duration:duration delay:delay hiddenYOrigin:hiddenYOrigin];
+                [self dismissNoticeWithDuration:duration delay:delay hiddenYOrigin:hiddenYOrigin];
             }
         }
     }];
 }
 
-- (void)dismissNoticeOfType:(WBNoticeViewType)noticeType duration:(CGFloat)duration delay:(CGFloat)delay hiddenYOrigin:(CGFloat)hiddenYOrigin
+- (void)dismissNoticeWithDuration:(CGFloat)duration delay:(CGFloat)delay hiddenYOrigin:(CGFloat)hiddenYOrigin
 {
     [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^ {
         CGRect newFrame = self.gradientView.frame;
@@ -557,7 +564,7 @@
 - (IBAction)dismissStickyNotice:(id)sender
 {
     // Triggered manually by the sticky notice
-    [self dismissNoticeOfType:WBNoticeViewTypeSticky duration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
+    [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
 }
 
 #pragma mark -

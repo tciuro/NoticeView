@@ -22,6 +22,14 @@ New in 2.1 is a different type of notice: Sticky. As it name implies, the notice
 
     WBStickyNoticeView *notice = [WBStickyNoticeView stickyNoticeInView:self.view title:@"7 New Tweets."];
     [notice show];
+    
+### New in 2.3: Make any Notice Sticky
+
+Some users have asked whether 'sticky' could be a property of any notice view. Well, I'm happy to report that starting with version 2.3, all notice types can be made sticky. The usage follows the regular pattern, only this time we set the 'sticky' property accordingly:
+
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+    notice.sticky = YES;
+    [notice show];
 
 ### Examples
 

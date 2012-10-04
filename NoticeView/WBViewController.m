@@ -32,7 +32,7 @@
 #import "WBStickyNoticeView.h"
 
 @interface WBViewController ()
-
+@property (nonatomic, readwrite, weak) WBNoticeView *currentNoticeView;
 @end
 
 @implementation WBViewController
@@ -145,9 +145,12 @@
 
 - (IBAction)showStickyError:(id)sender
 {
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
-    notice.sticky = YES;
-    [notice show];
+    if (nil == self.currentNoticeView) {
+        WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
+        notice.sticky = YES;
+        [notice show];
+        self.currentNoticeView = notice;
+    }
 }
 
 - (IBAction)showStickyErrorNoticeAndPush:(id)sender
@@ -157,6 +160,13 @@
     [notice show];
     
     [self.navigationController pushViewController: [[WBViewController alloc] init] animated:YES];
+}
+
+#pragma mark -
+
+- (IBAction)dismissStickyNotice:(id)sender
+{
+    [self.currentNoticeView dismissNotice];
 }
 
 @end

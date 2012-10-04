@@ -41,4 +41,7 @@
 - (IBAction)showSmallErrorNoticeAndPush:(id)sender;
 - (IBAction)showStickyNoticeAndPush:(id)sender;
 
+
+- (IBAction)dismissStickyNotice:(id)sender;
+
 @end

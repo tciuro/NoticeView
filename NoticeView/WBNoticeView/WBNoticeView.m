@@ -526,7 +526,7 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         frame.origin.x = frame.origin.y = 0.0;
         button.frame = frame;
-        [button addTarget:self.currentNotice action:@selector(dismissStickyNotice:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self.currentNotice action:@selector(dismissNotice) forControlEvents:UIControlEventTouchUpInside];
         [self.gradientView addSubview:button];
     }
     
@@ -561,10 +561,11 @@
     }];
 }
 
-- (IBAction)dismissStickyNotice:(id)sender
+- (void)dismissNotice
 {
-    // Triggered manually by the sticky notice
-    [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
+    if (self.isSticky) {
+        [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
+    }
 }
 
 #pragma mark -

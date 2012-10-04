@@ -152,6 +152,21 @@
                                     <action selector="showStickyError:" destination="2" eventType="touchUpInside" id="Ezy-Ea-k7g"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C6H-48-t6v">
+                                <rect key="frame" x="22" y="332" width="130" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <state key="normal" title="Dismiss Sticky Error">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dismissStickyNotice:" destination="2" eventType="touchUpInside" id="vNZ-11-zq9"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cee-Xq-cSc">
                                 <rect key="frame" x="22" y="244" width="130" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -232,6 +247,7 @@
         <class className="WBViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/WBViewController.h"/>
             <relationships>
+                <relationship kind="action" name="dismissStickyNotice:"/>
                 <relationship kind="action" name="showLargeErrorNotice:"/>
                 <relationship kind="action" name="showLargeErrorNoticeBelow:"/>
                 <relationship kind="action" name="showSmallErrorNotice:"/>

@@ -33,6 +33,8 @@ typedef enum {
 
 - (void)show; // Must be implemented in the subclasses, or else it'll raise an exception. 
 
+- (void)dismissNotice; // Only succeeds if the notice is sticky.
+
 // Error notice methods
 
 - (void)showErrorNoticeInView:(UIView *)view

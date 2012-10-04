@@ -51,6 +51,14 @@ To display a small success notice:
     WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:@"Link Saved Successfully"];
     [notice show];
     
+### New in 2.3.1: Dismissing a Notice Manually
+
+Starting with 2.3.1, any notice with the 'sticky' property set can be dismissed at will. This could happen for example when an specific event is detected. Just invoke 'dismissNotice' on the notice whenever you're ready to dismiss it:
+
+    [myNotice dismissNotice];
+    
+Check the demo project to see it in action.
+    
 ### Customizing the Notice
 
 Instead of piling up a bunch of arguments in a method call, I decided to use properties instead. This way, new properties can be added easily without having to clutter the API with specialized methods.

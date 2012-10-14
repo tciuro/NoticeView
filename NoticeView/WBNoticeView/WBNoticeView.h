@@ -18,6 +18,8 @@ typedef enum {
 
 @property (nonatomic, readwrite) WBNoticeViewType noticeType;
 
+typedef void (^WBNoticeViewDismissedBlock)(void);
+
 @property (nonatomic, strong) UIView *view;
 @property (nonatomic, strong) NSString *title; // default: @"Unknown Error"
 
@@ -26,6 +28,8 @@ typedef enum {
 @property (nonatomic, readwrite) CGFloat alpha; // default: 1.0
 @property (nonatomic, readwrite) CGFloat originY; // default: 0.0
 @property (nonatomic, readwrite, getter = isSticky) BOOL sticky; // default NO (Error and Success notice); YES (Sticky notice)
+
+@property (nonatomic, strong) WBNoticeViewDismissedBlock dismissedBlock;
 
 + (WBNoticeView *)defaultManager;
 

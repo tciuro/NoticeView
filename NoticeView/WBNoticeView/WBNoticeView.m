@@ -564,6 +564,10 @@
 - (void)dismissNotice
 {
     if (self.isSticky) {
+        if (self.dismissedBlock) {
+            self.dismissedBlock();
+        }
+
         [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
     }
 }

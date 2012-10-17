@@ -77,6 +77,7 @@
 @synthesize alpha = _alpha;
 @synthesize originY = _originY;
 @synthesize sticky = _sticky;
+@synthesize dismissedBlock = _dismissedBlock;
 
 + (WBNoticeView *)defaultManager
 {
@@ -555,6 +556,9 @@
         self.gradientView.frame = newFrame;
     } completion:^ (BOOL finished) {
         if (finished) {  
+            if (self.dismissedBlock) {
+                self.dismissedBlock();
+            }
             // Cleanup
             [self cleanup];
         }

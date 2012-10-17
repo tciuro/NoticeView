@@ -58,7 +58,17 @@ Starting with 2.3.1, any notice with the 'sticky' property set can be dismissed 
     [myNotice dismissNotice];
     
 Check the demo project to see it in action.
-    
+
+### New in 2.4: Specify a completion block when a notice is dismissed
+
+Starting with 2.4, any notice can have a completion block associated with it. This block will be invoked when the notice has been dismissed (works on sticky and non-sticky notices):
+
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Signup Error", nil) message:NSLocalizedString(@"You need to fill out all entries in this screen to signup.", nil)];
+    notice.sticky = YES;
+    notice.dismissedBlock = ^{
+        NSLog(@"The notice has been dismissed!");
+    };
+
 ### Customizing the Notice
 
 Instead of piling up a bunch of arguments in a method call, I decided to use properties instead. This way, new properties can be added easily without having to clutter the API with specialized methods.

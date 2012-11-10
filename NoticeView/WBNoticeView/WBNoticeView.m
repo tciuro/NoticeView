@@ -240,7 +240,7 @@
         
         // Set default values if needed
         if (nil == title) title = @"Unknown Error";
-        if (nil == message) message = @"Information not provided.";
+        if (nil == message) message = @"";//@"Information not provided.";
         if (0.0 == duration) duration = 0.5;
         if (0.0 == alpha) alpha = 1.0;
         if (origin < 0.0) origin = 0.0;
@@ -519,12 +519,19 @@
 
 - (void)displayNoticeWithDuration:(CGFloat)duration delay:(CGFloat)delay origin:(CGFloat)origin hiddenYOrigin:(CGFloat)hiddenYOrigin alpha:(CGFloat)alpha
 {
+    // Setup accessiblity on the gradient view
+    NSString *accessibilityLabel = ([self.messageLabel.text length]) ? [NSString stringWithFormat:@"%@, %@", [self.titleLabel text], [self.messageLabel text]]
+                                                       : [self.titleLabel text];
+    self.gradientView.accessibilityTraits = (self.isSticky || self.dismissedBlock) ? (UIAccessibilityTraitStaticText | UIAccessibilityTraitButton) : UIAccessibilityTraitStaticText;
+    self.gradientView.accessibilityLabel = accessibilityLabel;
+    
     // If the notice is sticky, add tap capabilities
     if (self.isSticky) {
         // Add an invisible button that responds to a manual dismiss
         self.currentNotice = self;
         CGRect frame = self.gradientView.frame;
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.accessibilityLabel = accessibilityLabel;
         frame.origin.x = frame.origin.y = 0.0;
         button.frame = frame;
         [button addTarget:self.currentNotice action:@selector(dismissNotice) forControlEvents:UIControlEventTouchUpInside];

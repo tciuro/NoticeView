@@ -54,6 +54,7 @@
         self.duration = 0.5;
         self.alpha = 1.0;
         self.delay = 2.0;
+        self.tapToDismissEnabled = YES;
     }
     return self;
 }
@@ -76,19 +77,18 @@
     // Setup accessiblity on the gradient view
     NSString *accessibilityLabel = ([self.messageLabel.text length]) ? [NSString stringWithFormat:@"%@, %@", [self.titleLabel text], [self.messageLabel text]]
                                                        : [self.titleLabel text];
-    self.gradientView.accessibilityTraits = (self.isSticky || self.dismissalBlock) ? UIAccessibilityTraitButton : UIAccessibilityTraitStaticText;
+    self.gradientView.accessibilityTraits = (self.isTapToDismissEnabled) ? UIAccessibilityTraitButton : UIAccessibilityTraitStaticText;
     self.gradientView.accessibilityLabel = accessibilityLabel;
+    self.gradientView.userInteractionEnabled = YES;
     
-    // If the notice is sticky, add tap capabilities
-    if (self.isSticky) {
+    // Add tap to dismiss capabilities if desired
+    if (self.isTapToDismissEnabled) {
         // Add an invisible button that responds to a manual dismiss
         self.currentNotice = self;
-        CGRect frame = self.gradientView.frame;
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.accessibilityLabel = accessibilityLabel;
-        frame.origin.x = frame.origin.y = 0.0;
-        button.frame = frame;
-        [button addTarget:self.currentNotice action:@selector(dismissNoticeInteractively) forControlEvents:UIControlEventTouchUpInside];
+        button.frame = self.gradientView.bounds;
+        [button addTarget:self action:@selector(dismissNoticeInteractively) forControlEvents:UIControlEventTouchUpInside];
         [self.gradientView addSubview:button];
     }
     
@@ -128,9 +128,7 @@
 
 - (void)dismissNotice
 {
-    if (self.isSticky) {
-        [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin interactively:NO];
-    }
+    [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin interactively:NO];
 }
 
 - (void)dismissNoticeInteractively

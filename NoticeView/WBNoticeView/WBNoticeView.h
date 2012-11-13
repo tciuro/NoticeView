@@ -78,6 +78,13 @@
 @property (nonatomic, readwrite) CGFloat originY;
 
 /**
+ A Boolean value that determines if the notice supports tap to dismiss. 
+ 
+ **Default**: `YES`
+ */
+@property (nonatomic, assign, getter = isTapToDismissEnabled) BOOL tapToDismissEnabled;
+
+/**
  A Boolean value that determines if the notice will be automatically dismissed after the time interval specified by the `delay` property expires.
  
  **Default**: `NO`
@@ -97,8 +104,6 @@
 
 /**
  Dismisses the notice.
- 
- Only succeeds if the notice is sticky.
  */
 - (void)dismissNotice;
 

@@ -18,11 +18,11 @@
 @property(nonatomic, assign) CGFloat hiddenYOrigin;
 @property(nonatomic, strong) WBNoticeView *currentNotice;
 @property(nonatomic, copy) void (^dismissalBlock)(BOOL dismissedInteractively);
+@property(nonatomic, strong) NSTimer *displayTimer;
 
 - (void)dismissNoticeWithDuration:(NSTimeInterval)duration
                             delay:(NSTimeInterval)delay
-                    hiddenYOrigin:(CGFloat)hiddenYOrigin
-                    interactively:(BOOL)interactively;
+                    hiddenYOrigin:(CGFloat)hiddenYOrigin;
 - (void)cleanup;
 
 @end
@@ -101,15 +101,18 @@
     } completion:^ (BOOL finished) {
         if (finished) {
             // if it's not sticky, hide it automatically
-            if (NO == self.isSticky) {
+            if (self.tapToDismissEnabled && !self.isSticky) {
+                // Schedule a timer
+                self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:self.delay target:self selector:@selector(dismissAfterTimerExpiration) userInfo:nil repeats:NO];
+            } else if (!self.isSticky) {
                 // Display for a while, then hide it again
-                [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin interactively:NO];
+                [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
             }
         }
     }];
 }
 
-- (void)dismissNoticeWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay hiddenYOrigin:(CGFloat)hiddenYOrigin interactively:(BOOL)interactively
+- (void)dismissNoticeWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay hiddenYOrigin:(CGFloat)hiddenYOrigin
 {
     [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^ {
         CGRect newFrame = self.gradientView.frame;
@@ -117,9 +120,7 @@
         self.gradientView.frame = newFrame;
     } completion:^ (BOOL finished) {
         if (finished) {  
-            if (self.dismissalBlock) {
-                self.dismissalBlock(interactively);
-            }
+            if (self.dismissalBlock) self.dismissalBlock(NO);
             // Cleanup
             [self cleanup];
         }
@@ -128,18 +129,32 @@
 
 - (void)dismissNotice
 {
-    [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin interactively:NO];
+    [self.displayTimer invalidate];
+    [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
 }
 
 - (void)dismissNoticeInteractively
 {
-    [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin interactively:YES];
+    [self.displayTimer invalidate];
+    if (self.dismissalBlock) {
+        self.dismissalBlock(YES);
+        
+        // Clear the reference to the dismissal block so that the animation does invoke the block a second time
+        self.dismissalBlock = nil;
+    }
+    [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
+}
+
+- (void)dismissAfterTimerExpiration
+{
+    [self dismissNoticeWithDuration:self.duration delay:0.0 hiddenYOrigin:self.hiddenYOrigin];
 }
 
 #pragma mark -
 
 - (void)cleanup
 {
+    [self.displayTimer invalidate];
     [self.gradientView removeFromSuperview];
     self.gradientView = nil;
     self.titleLabel = nil;

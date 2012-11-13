@@ -12,8 +12,6 @@
 
 @implementation WBErrorNoticeView
 
-@synthesize message;
-
 + (WBErrorNoticeView *)errorNoticeInView:(UIView *)view title:(NSString *)title message:(NSString *)message
 {
     WBErrorNoticeView *notice = [[WBErrorNoticeView alloc]initWithView:view title:title];
@@ -49,7 +47,7 @@
     self.messageLabel.font = [UIFont systemFontOfSize:13.0];
     self.messageLabel.textColor = [UIColor colorWithRed:239.0/255.0 green:167.0/255.0 blue:163.0/255.0 alpha:1.0];
     self.messageLabel.backgroundColor = [UIColor clearColor];
-    self.messageLabel.text = message;
+    self.messageLabel.text = self.message;
     
     // Calculate the number of lines it'll take to display the text
     NSInteger numberOfLines = [[self.messageLabel lines]count];

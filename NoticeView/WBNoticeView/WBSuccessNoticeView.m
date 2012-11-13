@@ -12,8 +12,6 @@
 
 @implementation WBSuccessNoticeView
 
-@synthesize title;
-
 + (WBSuccessNoticeView *)successNoticeInView:(UIView *)view title:(NSString *)title
 {
     WBSuccessNoticeView *notice = [[WBSuccessNoticeView alloc]initWithView:view title:title];
@@ -43,7 +41,7 @@
     self.titleLabel.shadowColor = [UIColor blackColor];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
     self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.text = title;
+    self.titleLabel.text = self.title;
     
     // Calculate the notice view height
     float noticeViewHeight = 40.0;

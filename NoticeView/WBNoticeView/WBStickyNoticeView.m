@@ -12,8 +12,6 @@
 
 @implementation WBStickyNoticeView
 
-@synthesize title;
-
 + (WBStickyNoticeView *)stickyNoticeInView:(UIView *)view title:(NSString *)title
 {
     WBStickyNoticeView *notice = [[WBStickyNoticeView alloc]initWithView:view title:title];
@@ -42,7 +40,7 @@
     self.titleLabel.shadowColor = [UIColor whiteColor];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:12.0];
     self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.text = title;
+    self.titleLabel.text = self.title;
     [self.titleLabel sizeToFit];
     CGRect frame = self.titleLabel.frame;
     if (frame.size.width > 260) {

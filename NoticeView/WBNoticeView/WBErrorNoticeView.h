@@ -8,10 +8,23 @@
 
 #import "WBNoticeView.h"
 
+/**
+ The `WBErrorNoticeView` class is a `WBNoticeView` subclass suitable for displaying an error to a user. The notice is presented on a red gradient background with an error icon on the left hand side of the notice. It supports the display of a title and a message.
+ */
 @interface WBErrorNoticeView : WBNoticeView
 
-+ (WBErrorNoticeView *)errorNoticeInView:(UIView *)view title:(NSString *)title message:(NSString *)message;
+///-------------------------------
+/// @name Creating an Error Notice
+///-------------------------------
 
-@property (nonatomic, strong) NSString *message; // default: @"Information not provided."
+/**
+ Creates and returns an error notice in the given view with the specified title and message.
+ 
+ @param view The view to display the notice in.
+ @param title The title of the notice.
+ @param message The message of the notice.
+ @return The newly created error notice object.
+ */
++ (WBErrorNoticeView *)errorNoticeInView:(UIView *)view title:(NSString *)title message:(NSString *)message;
 
 @end

@@ -8,76 +8,111 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ `WBNoticeView` objects provides a lightweight, non-intrusive means for displaying information to the user. The `WBNoticeView` class is an abstract class that encapsulates the interface common to all notice objects.
+ */
 @interface WBNoticeView : NSObject
 
-typedef enum {
-    WBNoticeViewTypeError = 0,
-    WBNoticeViewTypeSuccess,
-    WBNoticeViewTypeSticky
-} WBNoticeViewType;
+///----------------------------
+/// @name Initializing a Notice
+///----------------------------
 
-typedef void (^WBNoticeViewDismissedBlock)(void);
+/**
+ Initializes the receiver with the given origin view and title.
+ 
+ This is the designated initializer.
+ 
+ @param view The view from which the notice will originate when displayed.
+ @param title The title for the notice.
+ @return The receiver, initialized with the given view and title.
+ */
+- (id)initWithView:(UIView *)view title:(NSString *)title;
 
-@property (nonatomic, readwrite) WBNoticeViewType noticeType;
+///---------------------------------
+/// @name Configuring Notice Display
+///---------------------------------
 
-@property (nonatomic, strong) UIView *view;
-@property (nonatomic, strong) NSString *title; // default: @"Unknown Error"
+/**
+ The view from which the notice will be displayed.
+ */
+@property (nonatomic, weak) UIView *view;
 
-@property (nonatomic, readwrite) CGFloat duration; // default: 0.5
-@property (nonatomic, readwrite) CGFloat delay; // default: 2.0
-@property (nonatomic, readwrite) CGFloat alpha; // default: 1.0
-@property (nonatomic, readwrite) CGFloat originY; // default: 0.0
-@property (nonatomic, readwrite, getter = isSticky) BOOL sticky; // default NO (Error and Success notice); YES (Sticky notice)
-@property (nonatomic, readwrite, strong) WBNoticeViewDismissedBlock dismissedBlock;
+/**
+ The title text for the notice.
+ 
+ **Default**: `"Unknown Error"`
+ */
+@property (nonatomic, copy) NSString *title;
 
+/**
+ The message for the notice. Not supported by all notice types.
+ */
+@property (nonatomic, copy) NSString *message;
 
-+ (WBNoticeView *)defaultManager;
+/**
+ The animation duration for the notice.
+ 
+ **Default**: `0.5`
+ */
+@property (nonatomic, readwrite) NSTimeInterval duration;
 
-- (id)initWithView:(UIView *)theView title:(NSString *)theTitle; // throws NSInvalidArgumentException is view is nil.
+/**
+ The time interval in seconds that the notice will be displayed before being automatically dismissed.
+ 
+ **Default**: `2.0`
+ */
+@property (nonatomic, readwrite) NSTimeInterval delay;
 
-- (void)show; // Must be implemented in the subclasses, or else it'll raise an exception. 
+/**
+ The amount of transparency applied to the notice. Values can range between `0.0` (transparent) and `1.0` (opaque). Values outside this range are clamped to `0.0` or `1.0`.
+ 
+ **Default**: `1.0`
+ */
+@property (nonatomic, readwrite) CGFloat alpha;
 
-- (void)dismissNotice; // Only succeeds if the notice is sticky.
+/**
+ The number of points that the notice will be offset vertically from the origin view when being displayed.
+ 
+ **Default**: `0.0`
+ */
+@property (nonatomic, readwrite) CGFloat originY;
 
-// Error notice methods
+/**
+ A Boolean value that determines if the notice will be automatically dismissed after the time interval specified by the `delay` property expires.
+ 
+ **Default**: `NO`
+ */
+@property (nonatomic, readwrite, getter = isSticky) BOOL sticky;
 
-- (void)showErrorNoticeInView:(UIView *)view
-                        title:(NSString *)title
-                      message:(NSString *)message;
+///----------------------------------------
+/// @name Showing and Dismissing the Notice
+///----------------------------------------
 
-- (void)showErrorNoticeInView:(UIView *)view
-                        title:(NSString *)title
-                      message:(NSString *)message
-                     duration:(float)duration
-                        delay:(float)delay
-                        alpha:(float)alpha;
+/**
+ Shows the notice.
+ 
+ @warning The `WBNoticeView` class is abstract. Concrete subclasses must provide an implementation of the `show` method or else an exception will be raised.
+ */
+- (void)show;
 
-- (void)showErrorNoticeInView:(UIView *)view
-                        title:(NSString *)title
-                      message:(NSString *)message
-                     duration:(float)duration
-                        delay:(float)delay
-                        alpha:(float)alpha
-                      yOrigin:(CGFloat)origin;
+/**
+ Dismisses the notice.
+ 
+ Only succeeds if the notice is sticky.
+ */
+- (void)dismissNotice;
 
-// Success notice methods
+///----------------------------------
+/// @name Setting the Dismissal Block
+///----------------------------------
 
-- (void)showSuccessNoticeInView:(UIView *)view
-                        message:(NSString *)message;
-
-- (void)showSuccessNoticeInView:(UIView *)view
-                        message:(NSString *)message
-                       duration:(float)duration
-                          delay:(float)delay
-                          alpha:(float)alpha
-                        yOrigin:(CGFloat)origin;
-
-// Sticky notice methods
-
-- (void)showStickyNoticeInView:(UIView *)view
-                       message:(NSString *)message
-                      duration:(float)duration
-                         alpha:(float)alpha
-                       yOrigin:(CGFloat)origin;
+/**
+ Sets a block to be executed when the notice is dismissed.
+ 
+ The block accepts a single Boolean value that indicates if the notice was dismissed interactively by the user or was dismissed due to expiration of the display interval.
+ 
+ @param block The block to be executed when the notice is dismissed.
+ */
+- (void)setDismissalBlock:(void (^)(BOOL dismissedInteractively))block;
 
 @end

@@ -12,17 +12,39 @@ A TweetBot-like notice component for iOS.
 * Drop the WBNoticeView folder in your project
 * Add QuartzCore.framework to your project
 
-### NoticeView 1.0 vs 2.0
+### New in 3.0: Cleaner API, easier customization and more
 
-The behavior in version 1 was "fire and forget". Calling *showErrorNoticeInView* or *showSuccessNoticeInView* displayed the notice, but there was no way to retain it for later use. Version 2 allows the developer to instantiate a notice, customize it (optional) and show it. Not only it's possible to retain it, but also customize it anytime with say, a different title and message. Oh, yeah… and it's cleaner too.
+First and foremost, please note that in v3.0 the API has changed. Instead of deprecating and complicating the API, it was decided to replace some of the methods. NoticeView is a tiny library, so the impact should be minimal and the code easy to adapt.
 
-### New in 2.1: Sticky Notice
+Why the change? Prior to v3.0, it was fairly difficult to customize the look and feel given the current structure of the notice classes. This version simplifies that task, improves accessibility, and enhances the utility of the tap to dismiss functionality.
 
-New in 2.1 is a different type of notice: Sticky. As it name implies, the notice will remain visible until the user taps on it to dismiss it. The usage follows the Error and Success notice pattern:
+Here is the brief of the changes introduced in v3.0:
 
-    WBStickyNoticeView *notice = [WBStickyNoticeView stickyNoticeInView:self.view title:@"7 New Tweets."];
-    [notice show];
+- Adds a .podspec file to the repository.
+- Updated the internals of WBNoticeView to set up accessibility labels and attributes for the notice. These changes make it easy to target the notice views inside of tests while performing functional testing (e.g. KIF https://github.com/square/KIF).
+- It's now easier to customize NoticeView.
+- Tap to dismiss behaviors are much more flexible. It's possible to determine if a notice was dismissed interactively in the dismissal block, allowing for Growl style notifications that can be responded to on tap or automatically dismissed. Notices can also be optionally dismissed via tap before the display duration has expired.
+
+Acknowledgments: big thanks to @blakewatters for taking the time to refactor, document and cleanup the code.
+
+### New in 2.4: Specify a completion block when a notice is dismissed
+
+Starting with 2.4, any notice can have a completion block associated with it. This block will be invoked when the notice has been dismissed (works on sticky and non-sticky notices):
+
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Signup Error", nil) message:NSLocalizedString(@"You need to fill out all entries in this screen to signup.", nil)];
+    notice.sticky = YES;
+    notice.dismissedBlock = ^{
+        NSLog(@"The notice has been dismissed!");
+    };
     
+### New in 2.3.1: Dismissing a Notice Manually
+
+Starting with 2.3.1, any notice with the 'sticky' property set can be dismissed at will. This could happen for example when an specific event is detected. Just invoke 'dismissNotice' on the notice whenever you're ready to dismiss it:
+
+    [myNotice dismissNotice];
+    
+Check the demo project to see it in action.
+
 ### New in 2.3: Make any Notice Sticky
 
 Some users have asked whether 'sticky' could be a property of any notice view. Well, I'm happy to report that starting with version 2.3, all notice types can be made sticky. The usage follows the regular pattern, only this time we set the 'sticky' property accordingly:
@@ -30,6 +52,17 @@ Some users have asked whether 'sticky' could be a property of any notice view. W
     WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
     notice.sticky = YES;
     [notice show];
+    
+### New in 2.1: Sticky Notice
+
+New in 2.1 is a different type of notice: Sticky. As it name implies, the notice will remain visible until the user taps on it to dismiss it. The usage follows the Error and Success notice pattern:
+
+    WBStickyNoticeView *notice = [WBStickyNoticeView stickyNoticeInView:self.view title:@"7 New Tweets."];
+    [notice show];
+    
+### NoticeView 1.0 vs 2.0
+
+The behavior in version 1 was "fire and forget". Calling *showErrorNoticeInView* or *showSuccessNoticeInView* displayed the notice, but there was no way to retain it for later use. Version 2 allows the developer to instantiate a notice, customize it (optional) and show it. Not only it's possible to retain it, but also customize it anytime with say, a different title and message. Oh, yeah… and it's cleaner too.
 
 ### Examples
 
@@ -50,24 +83,6 @@ To display a small success notice:
 
     WBSuccessNoticeView *notice = [WBSuccessNoticeView successNoticeInView:self.view title:@"Link Saved Successfully"];
     [notice show];
-    
-### New in 2.3.1: Dismissing a Notice Manually
-
-Starting with 2.3.1, any notice with the 'sticky' property set can be dismissed at will. This could happen for example when an specific event is detected. Just invoke 'dismissNotice' on the notice whenever you're ready to dismiss it:
-
-    [myNotice dismissNotice];
-    
-Check the demo project to see it in action.
-
-### New in 2.4: Specify a completion block when a notice is dismissed
-
-Starting with 2.4, any notice can have a completion block associated with it. This block will be invoked when the notice has been dismissed (works on sticky and non-sticky notices):
-
-    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:NSLocalizedString(@"Signup Error", nil) message:NSLocalizedString(@"You need to fill out all entries in this screen to signup.", nil)];
-    notice.sticky = YES;
-    notice.dismissedBlock = ^{
-        NSLog(@"The notice has been dismissed!");
-    };
 
 ### Customizing the Notice
 

@@ -12,3 +12,7 @@
 *.pbxuser
 *.perspectivev3
 *.xcuserdatad
+
+/NoticeView.xcodeproj/project.xcworkspace/xcshareddata/
+/NoticeView.xcodeproj/xcshareddata/
+/.gitignore

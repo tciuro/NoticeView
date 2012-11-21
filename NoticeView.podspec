@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'NoticeView'
-  s.version      = '2.4'
+  s.version      = '3.0'
   s.license      = 'MIT'
   s.summary      = 'A TweetBot-like notice component for iOS.'
   s.homepage     = 'https://github.com/tciuro/NoticeView/'

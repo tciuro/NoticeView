@@ -110,6 +110,36 @@ The default values are the following:
         if (0.0 == delay) delay = 2.0;
         if (0.0 == alpha) alpha = 1.0;
 		if (origin < 0.0) origin = 0.0;
+		
+## NoticeView SLOCCount Stats
+
+Who doesn't like stats? ;-) Here are some as reported by SLOCCount:
+
+    SLOC	Directory				SLOC-by-Language (Sorted)
+	797     NoticeView      		objc=797
+	245     NoticeViewiPad  		objc=245
+	0       NoticeView.xcode		proj (none)
+	0       top_dir         		(none)
+
+	Totals grouped by language (dominant language first):
+
+	objc:          1042 (100.00%)
+
+	Total Physical Source Lines of Code (SLOC)                = 1,042
+	Development Effort Estimate, Person-Years (Person-Months) = 0.21 (2.51) (*)
+	Schedule Estimate, Years (Months)                         = 0.30 (3.54) (**)
+	Estimated Average Number of Developers (Effort/Schedule)  = 0.71
+	Total Estimated Cost to Develop                           = $ 50,119 (***)
+
+	(*)   Basic COCOMO model, Person-Months = 2.4 * (KSLOC**1.05)
+	(**)  Basic COCOMO model, Months = 2.5 * (person-months**0.38)
+	(***) Average salary = $100,000/year, overhead = 2.40
+
+SLOCCount, Copyright (C) 2001-2004 David A. Wheeler
+<br/>http://www.dwheeler.com/sloccount/
+
+Latest salary information
+<br/>http://www.indeed.com/salary/Software-Engineer.html
 
 ## Contribute
 

@@ -73,9 +73,9 @@
 - (IBAction)showLargeErrorNotice:(id)sender
 {
     WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."];
-    notice.dismissedBlock = ^{
+    [notice setDismissalBlock:^(BOOL dismissedInteractively) {
         NSLog(@"showLargeErrorNotice dismissed!");
-    };
+    }];
     [notice show];
 }
 
@@ -88,9 +88,9 @@
 - (IBAction)showSmallStickyNotice:(id)sender
 {
     WBStickyNoticeView *notice = [WBStickyNoticeView stickyNoticeInView:self.view title:@"7 New Tweets."];
-    notice.dismissedBlock = ^{
+    [notice setDismissalBlock:^(BOOL dismissedInteractively) {
         NSLog(@"showSmallStickyNotice dismissed!");
-    };
+    }];
     [notice show];
 }
 

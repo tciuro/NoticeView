@@ -12,6 +12,8 @@
 
 - (NSArray *)lines
 {
+    if (! [self.text length]) return nil;
+    
     NSMutableArray *lines = [NSMutableArray arrayWithCapacity:10];
     NSCharacterSet *wordSeparators = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     NSString *currentLine = self.text;

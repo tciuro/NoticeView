@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250628781651F7DC00D3443E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 250628771651F7DB00D3443E /* Default-568h@2x.png */; };
 		592BDDE915645BEE00B78820 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE115645BEE00B78820 /* Default.png */; };
 		592BDDEA15645BEE00B78820 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE215645BEE00B78820 /* Default@2x.png */; };
 		592BDDEB15645BEE00B78820 /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE415645BEE00B78820 /* NoticeView.bundle */; };
@@ -31,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		250628731651E78600D3443E /* WBNoticeView+ForSubclassEyesOnly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBNoticeView+ForSubclassEyesOnly.h"; sourceTree = "<group>"; };
+		250628771651F7DB00D3443E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		592BDDE115645BEE00B78820 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		592BDDE215645BEE00B78820 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		592BDDE415645BEE00B78820 /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
@@ -55,7 +58,6 @@
 		59A782581562F8750001F08D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		746CBCFE1570A1D100B844B1 /* WBErrorNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBErrorNoticeView.h; sourceTree = "<group>"; };
 		746CBCFF1570A1D100B844B1 /* WBErrorNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBErrorNoticeView.m; sourceTree = "<group>"; };
-		746CBD011570A65D00B844B1 /* WBNoticeView_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBNoticeView_Private.h; sourceTree = "<group>"; };
 		746CBD061570A8FA00B844B1 /* WBSuccessNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBSuccessNoticeView.h; sourceTree = "<group>"; };
 		746CBD071570A8FA00B844B1 /* WBSuccessNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBSuccessNoticeView.m; sourceTree = "<group>"; };
 		748A6A57157D0B74003C7655 /* WBGrayGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBGrayGradientView.h; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		592BDDE015645BEE00B78820 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				250628771651F7DB00D3443E /* Default-568h@2x.png */,
 				595FE868156F021E004C505B /* navigationBar.png */,
 				592BDDE115645BEE00B78820 /* Default.png */,
 				592BDDE215645BEE00B78820 /* Default@2x.png */,
@@ -166,7 +169,6 @@
 			children = (
 				592BDDE715645BEE00B78820 /* WBNoticeView.h */,
 				592BDDE815645BEE00B78820 /* WBNoticeView.m */,
-				746CBD011570A65D00B844B1 /* WBNoticeView_Private.h */,
 				592BDDE415645BEE00B78820 /* NoticeView.bundle */,
 				592BDDE515645BEE00B78820 /* UILabel+WBExtensions.h */,
 				592BDDE615645BEE00B78820 /* UILabel+WBExtensions.m */,
@@ -176,6 +178,7 @@
 				748A6A58157D0B74003C7655 /* WBGrayGradientView.m */,
 				7492FA43157C8CD700FB834C /* WBRedGradientView.h */,
 				7492FA44157C8CD700FB834C /* WBRedGradientView.m */,
+				250628731651E78600D3443E /* WBNoticeView+ForSubclassEyesOnly.h */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				592BDDEA15645BEE00B78820 /* Default@2x.png in Resources */,
 				592BDDEB15645BEE00B78820 /* NoticeView.bundle in Resources */,
 				595FE869156F021E004C505B /* navigationBar.png in Resources */,
+				250628781651F7DC00D3443E /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -95,7 +95,13 @@
     // Go ahead, display it
     [UIView animateWithDuration:self.duration animations:^ {
         CGRect newFrame = self.gradientView.frame;
-        newFrame.origin.y = self.originY;
+        //add scroll offset if scrolled
+        double scrollOffsetY = 0.0f;
+        if ([self.view isKindOfClass:[UIScrollView class]]) {
+            UIScrollView *scrollView = (UIScrollView *)self.view;
+            scrollOffsetY = scrollView.contentOffset.y;
+        }
+        newFrame.origin.y = self.originY + scrollOffsetY;
         self.gradientView.frame = newFrame;
         self.gradientView.alpha = self.alpha;
     } completion:^ (BOOL finished) {

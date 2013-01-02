@@ -70,6 +70,24 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    @try {
+        if (object && [object isKindOfClass:[UIScrollView class]] && [keyPath isEqualToString:@"contentOffset"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CGRect newFrame = self.gradientView.frame;
+                newFrame.origin.y = ((UIScrollView *)object).contentOffset.y;
+                self.gradientView.frame = newFrame;
+                [self.view bringSubviewToFront:self.gradientView];
+            });
+        }
+    }
+    @catch (NSException *exception) {
+        
+    }
+}
+
 #pragma mark -
 
 - (void)displayNotice

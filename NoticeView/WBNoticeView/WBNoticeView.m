@@ -55,6 +55,7 @@
         self.alpha = 1.0;
         self.delay = 2.0;
         self.tapToDismissEnabled = YES;
+        self.slidingMode = WBNoticeViewSlidingModeDown;
     }
     return self;
 }
@@ -90,6 +91,11 @@
         button.frame = self.gradientView.bounds;
         [button addTarget:self action:@selector(dismissNoticeInteractively) forControlEvents:UIControlEventTouchUpInside];
         [self.gradientView addSubview:button];
+    }
+    
+    //set default originY if WBNoticeViewSlidingModeUp
+    if ((self.slidingMode == WBNoticeViewSlidingModeUp) && (self.originY == 0)) {
+        self.originY = self.view.bounds.size.height - self.gradientView.bounds.size.height;
     }
     
     // Go ahead, display it

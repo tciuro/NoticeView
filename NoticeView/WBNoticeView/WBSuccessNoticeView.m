@@ -45,13 +45,12 @@
     
     // Calculate the notice view height
     float noticeViewHeight = 40.0;
-    float hiddenYOrigin = 0.0;
     if (numberOfLines > 1) {
         noticeViewHeight += (numberOfLines - 1) * messageLineHeight;
     }
     
     // Make sure we hide completely the view, including its shadow
-    hiddenYOrigin = -noticeViewHeight - 20.0;
+    float hiddenYOrigin = self.slidingMode == WBNoticeViewSlidingModeDown ? -noticeViewHeight - 20.0: self.view.bounds.size.height;
     
     // Make and add the notice view
     self.gradientView = [[WBBlueGradientView alloc] initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];

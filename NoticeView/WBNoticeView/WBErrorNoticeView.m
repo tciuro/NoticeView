@@ -25,7 +25,7 @@
 - (void)show
 {
     // Obtain the screen width
-    CGFloat viewWidth = self.view.frame.size.width;
+    CGFloat viewWidth = self.view.bounds.size.width;
     
     // Locate the images
     NSString *path = [[[NSBundle mainBundle]resourcePath]stringByAppendingPathComponent:@"NoticeView.bundle"];

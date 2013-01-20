@@ -29,6 +29,7 @@
                           nil];
     
     [self.layer insertSublayer:gradient atIndex:0];
+    self.layer.needsDisplayOnBoundsChange = YES;
     
     UIView *firstBotWhiteLine = [[UIView alloc]initWithFrame:CGRectMake(0.0, self.bounds.size.height - 1, self.frame.size.width, 1.0)];
     firstBotWhiteLine.backgroundColor = [UIColor colorWithRed:236/255.0f green:238/255.0f blue:239/255.0f alpha:1.0];

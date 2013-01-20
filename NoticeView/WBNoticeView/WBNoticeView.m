@@ -96,6 +96,10 @@
     //set default originY if WBNoticeViewSlidingModeUp
     if ((self.slidingMode == WBNoticeViewSlidingModeUp) && (self.originY == 0)) {
         self.originY = self.view.bounds.size.height - self.gradientView.bounds.size.height;
+        self.gradientView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+    } else
+    {
+        self.gradientView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
     }
     
     // Go ahead, display it
@@ -105,15 +109,13 @@
         self.gradientView.frame = newFrame;
         self.gradientView.alpha = self.alpha;
     } completion:^ (BOOL finished) {
-        if (finished) {
-            // if it's not sticky, hide it automatically
-            if (self.tapToDismissEnabled && !self.isSticky) {
-                // Schedule a timer
-                self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:self.delay target:self selector:@selector(dismissAfterTimerExpiration) userInfo:nil repeats:NO];
-            } else if (!self.isSticky) {
-                // Display for a while, then hide it again
-                [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
-            }
+        // if it's not sticky, hide it automatically
+        if (self.tapToDismissEnabled && !self.isSticky) {
+            // Schedule a timer
+            self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:self.delay target:self selector:@selector(dismissAfterTimerExpiration) userInfo:nil repeats:NO];
+        } else if (!self.isSticky) {
+            // Display for a while, then hide it again
+            [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
         }
     }];
 }
@@ -122,14 +124,17 @@
 {
     [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^ {
         CGRect newFrame = self.gradientView.frame;
-        newFrame.origin.y = hiddenYOrigin;
+        if (self.slidingMode == WBNoticeViewSlidingModeUp)  {
+            newFrame.origin.y = self.gradientView.frame.origin.y + self.gradientView.bounds.size.height;
+        } else
+        {
+            newFrame.origin.y = hiddenYOrigin;
+        }
         self.gradientView.frame = newFrame;
     } completion:^ (BOOL finished) {
-        if (finished) {  
-            if (self.dismissalBlock) self.dismissalBlock(NO);
-            // Cleanup
-            [self cleanup];
-        }
+        if (self.dismissalBlock) self.dismissalBlock(NO);
+        // Cleanup
+        [self cleanup];
     }];
 }
 

@@ -30,6 +30,7 @@
                           nil];
     
     [self.layer insertSublayer:gradient atIndex:0];
+    self.layer.needsDisplayOnBoundsChange = YES;
     
     UIView *firstTopBlueLine = [[UIView alloc]initWithFrame:CGRectMake(0.0, 0.0, self.bounds.size.width, 1.0)];
     firstTopBlueLine.backgroundColor = [UIColor colorWithRed:105/255.0f green:163/255.0f blue:208/255.0f alpha:1.0];

@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum WBNoticeViewSlidingMode {
+    WBNoticeViewSlidingModeUp,
+    WBNoticeViewSlidingModeDown,
+} WBNoticeViewSlidingMode;
+
 /**
  `WBNoticeView` objects provides a lightweight, non-intrusive means for displaying information to the user. The `WBNoticeView` class is an abstract class that encapsulates the interface common to all notice objects.
  */
@@ -90,6 +95,14 @@
  **Default**: `NO`
  */
 @property (nonatomic, readwrite, getter = isSticky) BOOL sticky;
+
+/**
+ Decides if the notice is shown sliding up from the bottom or down from the top
+ 
+ **Default**: 'WBNoticeViewSlidingModeDown'
+*/
+@property WBNoticeViewSlidingMode slidingMode;
+
 
 ///----------------------------------------
 /// @name Showing and Dismissing the Notice

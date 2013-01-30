@@ -175,6 +175,12 @@
 {
     [self.displayTimer invalidate];
     [self.gradientView removeFromSuperview];
+    //remove self from being the delegate of scroll view
+    if ([self.view isKindOfClass:[UIScrollView class]]) {
+        UIScrollView *scrollView = (UIScrollView *)self.view;
+        scrollView.delegate = nil;
+    }
+
     self.gradientView = nil;
     self.titleLabel = nil;
     self.messageLabel = nil;

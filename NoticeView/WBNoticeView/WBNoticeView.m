@@ -70,6 +70,11 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+- (BOOL)isEqual:(WBNoticeView *)object
+{
+    return [self.title isEqual:object.title] && [self.message isEqual:object.message];
+}
+
 #pragma mark -
 
 - (void)displayNotice

@@ -148,7 +148,7 @@
         // Clear the reference to the dismissal block so that the animation does invoke the block a second time
         self.dismissalBlock = nil;
     }
-    [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
+    [self dismissNoticeWithDuration:self.duration delay:0.0 hiddenYOrigin:self.hiddenYOrigin];
 }
 
 - (void)dismissAfterTimerExpiration

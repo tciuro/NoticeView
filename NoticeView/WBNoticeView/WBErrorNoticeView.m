@@ -33,17 +33,21 @@
     
     // Make and add the title label
     float titleYOrigin = 10.0;
-    
-    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, titleYOrigin, viewWidth - 70.0, 16.0)];
-    self.titleLabel.textColor = [UIColor whiteColor];
-    self.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
-    self.titleLabel.shadowColor = [UIColor blackColor];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
-    self.titleLabel.backgroundColor = [UIColor clearColor];
-    self.titleLabel.text = self.title;
-    
+    float messageYOrigin = 15.0;
+
+    if ([self.title length] > 0) {
+        self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, titleYOrigin, viewWidth - 70.0, 16.0)];
+        self.titleLabel.textColor = [UIColor whiteColor];
+        self.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
+        self.titleLabel.shadowColor = [UIColor blackColor];
+        self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0];
+        self.titleLabel.backgroundColor = [UIColor clearColor];
+        self.titleLabel.text = self.title;
+        messageYOrigin = 30.0;
+    }
+
     // Make the message label
-    self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, 20.0 + 10.0, viewWidth - 70.0, 12.0)];
+    self.messageLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, messageYOrigin, viewWidth - 70.0, 12.0)];
     self.messageLabel.font = [UIFont systemFontOfSize:13.0];
     self.messageLabel.textColor = [UIColor colorWithRed:239.0/255.0 green:167.0/255.0 blue:163.0/255.0 alpha:1.0];
     self.messageLabel.backgroundColor = [UIColor clearColor];
@@ -76,7 +80,11 @@
     }
     
     // Add some bottom margin for the notice view
-    noticeViewHeight += 30.0;
+    if ([self.title length] > 0) {
+        noticeViewHeight += 30.0;
+    } else {
+        noticeViewHeight += 20.0;
+    }
     
     // Make sure we hide completely the view, including its shadow
     float hiddenYOrigin = -noticeViewHeight - 20.0;

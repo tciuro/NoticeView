@@ -91,6 +91,11 @@
  */
 @property (nonatomic, readwrite, getter = isSticky) BOOL sticky;
 
+/**
+A Boolean value that determines whether the notice is hidden.
+ */
+@property(nonatomic, readonly, getter = isHidden) BOOL hidden;
+
 ///----------------------------------------
 /// @name Showing and Dismissing the Notice
 ///----------------------------------------

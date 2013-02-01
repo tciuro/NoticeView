@@ -70,6 +70,11 @@
     [self doesNotRecognizeSelector:_cmd];
 }
 
+- (BOOL)isHidden
+{
+	return self.gradientView == nil;
+}
+
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -144,7 +149,7 @@
 {
     [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^ {
         if ([self.view isKindOfClass:[UIScrollView class]]) {
-                [self.view removeObserver:self forKeyPath:@"contentOffset"];                   
+			[self.view removeObserver:self forKeyPath:@"contentOffset"];
         }
         CGRect newFrame = self.gradientView.frame;
         newFrame.origin.y = hiddenYOrigin;

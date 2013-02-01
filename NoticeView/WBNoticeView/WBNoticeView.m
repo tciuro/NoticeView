@@ -78,6 +78,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 CGRect newFrame = self.gradientView.frame;
                 newFrame.origin.y = ((UIScrollView *)object).contentOffset.y;
+                self.hiddenYOrigin += (newFrame.origin.y - self.gradientView.frame.origin.y);
                 self.gradientView.frame = newFrame;
                 [self.view bringSubviewToFront:self.gradientView];
             });
@@ -113,7 +114,16 @@
     // Go ahead, display it
     [UIView animateWithDuration:self.duration animations:^ {
         CGRect newFrame = self.gradientView.frame;
-        newFrame.origin.y = self.originY;
+        //add scroll offset if scrolled
+        double scrollOffsetY = 0.0f;
+        if ([self.view isKindOfClass:[UIScrollView class]]) {
+            UIScrollView *scrollView = (UIScrollView *)self.view;
+            scrollOffsetY = scrollView.contentOffset.y;
+            self.hiddenYOrigin += scrollOffsetY;
+            
+            [self.view addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:NULL];
+        }
+        newFrame.origin.y = self.originY + scrollOffsetY;
         self.gradientView.frame = newFrame;
         self.gradientView.alpha = self.alpha;
     } completion:^ (BOOL finished) {
@@ -133,6 +143,9 @@
 - (void)dismissNoticeWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay hiddenYOrigin:(CGFloat)hiddenYOrigin
 {
     [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^ {
+        if ([self.view isKindOfClass:[UIScrollView class]]) {
+                [self.view removeObserver:self forKeyPath:@"contentOffset"];                   
+        }
         CGRect newFrame = self.gradientView.frame;
         newFrame.origin.y = hiddenYOrigin;
         self.gradientView.frame = newFrame;

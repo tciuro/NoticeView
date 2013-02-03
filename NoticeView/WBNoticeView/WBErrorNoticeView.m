@@ -59,27 +59,22 @@
     r.origin.y = self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height;
     
     float noticeViewHeight = 0.0;
-    double currOsVersion = [[[UIDevice currentDevice]systemVersion]doubleValue];
-    if (currOsVersion >= 6.0f) {
-        noticeViewHeight = messageLabelHeight;
-    } else {
-        // Now we can determine the height of one line of text
-        r.size.height = self.messageLabel.frame.size.height * numberOfLines;
-        r.size.width = viewWidth - 70.0;
-        self.messageLabel.frame = r;
-        
-        // Calculate the notice view height
-        noticeViewHeight = 10.0;
-        if (numberOfLines > 1) {
-            noticeViewHeight += ((numberOfLines - 1) * messageLabelHeight);
-        }
-    }
+    // Now we can determine the height of one line of text
+    r.size.height = self.messageLabel.frame.size.height * numberOfLines;
+    r.size.width = viewWidth - 70.0;
+    self.messageLabel.frame = r;
+    
+    // Calculate the notice view height
+    noticeViewHeight = 10.0;
+    if (numberOfLines > 1) {
+        noticeViewHeight += ((numberOfLines - 1) * messageLabelHeight);
+    }   
     
     // Add some bottom margin for the notice view
     noticeViewHeight += 30.0;
     
     // Make sure we hide completely the view, including its shadow
-    float hiddenYOrigin = -noticeViewHeight - 20.0;
+    float hiddenYOrigin = self.slidingMode == WBNoticeViewSlidingModeDown ? -noticeViewHeight - 20.0: self.view.bounds.size.height;
     
     // Make and add the notice view
     self.gradientView = [[WBRedGradientView alloc] initWithFrame:CGRectMake(0.0, hiddenYOrigin, viewWidth, noticeViewHeight + 10.0)];

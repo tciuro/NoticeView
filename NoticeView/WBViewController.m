@@ -30,6 +30,7 @@
 #import "WBErrorNoticeView.h"
 #import "WBSuccessNoticeView.h"
 #import "WBStickyNoticeView.h"
+#import "NSOperationQueue+WBNoticeExtensions.h"
 
 @interface WBViewController ()
 @property (nonatomic, readwrite, weak) WBNoticeView *currentNoticeView;
@@ -68,6 +69,16 @@
 {
     WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Network Error" message:@"Check your network connection."];
     [notice show];
+}
+
+- (IBAction)showQueuedErrorNotice:(id)sender
+{
+    WBErrorNoticeView *notice = [WBErrorNoticeView errorNoticeInView:self.view title:@"Queued Network Error" message:@"Check your network connection."];
+    WBNoticeOperation *operation = [NSOperationQueue addNoticeView:notice filterDuplicates:YES];
+    __block WBNoticeOperation *weakOperation = operation;
+    operation.completionBlock = ^{
+        NSLog(@"Queued notice operation dismissed! Interactively: %@", weakOperation.dismissedInteractively ? @"YES" : @"NO");
+    };
 }
 
 - (IBAction)showLargeErrorNotice:(id)sender

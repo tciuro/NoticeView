@@ -11,6 +11,7 @@
 
 @interface WBNoticeView ()
 
+@property(nonatomic, strong) UIButton *dismissButton;
 @property(nonatomic, strong) UIView *gradientView;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *messageLabel;
@@ -80,24 +81,20 @@
 
 - (void)displayNotice
 {
-    // Setup accessiblity on the gradient view
-    NSString *accessibilityLabel = ([self.messageLabel.text length]) ? [NSString stringWithFormat:@"%@, %@", [self.titleLabel text], [self.messageLabel text]]
-                                                       : [self.titleLabel text];
-    self.gradientView.accessibilityTraits = (self.isTapToDismissEnabled) ? UIAccessibilityTraitButton : UIAccessibilityTraitStaticText;
-    self.gradientView.accessibilityLabel = accessibilityLabel;
     self.gradientView.userInteractionEnabled = YES;
-    
+
     // Add tap to dismiss capabilities if desired
     if (self.isTapToDismissEnabled) {
         // Add an invisible button that responds to a manual dismiss
         self.currentNotice = self;
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.accessibilityLabel = accessibilityLabel;
-        button.frame = self.gradientView.bounds;
-        [button addTarget:self action:@selector(dismissNoticeInteractively) forControlEvents:UIControlEventTouchUpInside];
-        [self.gradientView addSubview:button];
+        self.dismissButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.dismissButton.frame = self.gradientView.bounds;
+        [self.dismissButton addTarget:self action:@selector(dismissNoticeInteractively) forControlEvents:UIControlEventTouchUpInside];
+        [self.gradientView addSubview:self.dismissButton];
     }
-    
+
+    [self updateAccessibilityLabels];
+
     //set default originY if WBNoticeViewSlidingModeUp
     if ((self.slidingMode == WBNoticeViewSlidingModeUp) && (self.originY == 0)) {
         self.originY = self.view.bounds.size.height - self.gradientView.bounds.size.height;
@@ -170,6 +167,16 @@
 - (void)dismissAfterTimerExpiration
 {
     [self dismissNoticeWithDuration:self.duration delay:0.0 hiddenYOrigin:self.hiddenYOrigin];
+}
+
+- (void)updateAccessibilityLabels
+{
+    // Setup accessiblity on the gradient view
+    NSString *accessibilityLabel = ([self.messageLabel.text length]) ? [NSString stringWithFormat:@"%@, %@", [self.titleLabel text], [self.messageLabel text]]
+    : [self.titleLabel text];
+    self.gradientView.accessibilityTraits = (self.isTapToDismissEnabled) ? UIAccessibilityTraitButton : UIAccessibilityTraitStaticText;
+    self.gradientView.accessibilityLabel = accessibilityLabel;
+    self.dismissButton.accessibilityLabel = accessibilityLabel;
 }
 
 #pragma mark -

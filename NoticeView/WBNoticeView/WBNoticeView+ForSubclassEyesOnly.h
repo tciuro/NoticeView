@@ -12,6 +12,7 @@
 
 @interface WBNoticeView (ForSubclassEyesOnly)
 
+@property(nonatomic, strong) UIButton *dismissButton;
 @property(nonatomic, strong) UIView *gradientView;
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *messageLabel;

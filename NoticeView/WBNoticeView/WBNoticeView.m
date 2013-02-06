@@ -9,7 +9,7 @@
 #import "WBNoticeView.h"
 #import "WBNoticeView+ForSubclassEyesOnly.h"
 
-@interface WBNoticeView ()
+@interface WBNoticeView ()<UIScrollViewDelegate>
 
 @property(nonatomic, strong) UIView *gradientView;
 @property(nonatomic, strong) UILabel *titleLabel;
@@ -114,6 +114,7 @@
         double scrollOffsetY = 0.0f;
         if ([self.view isKindOfClass:[UIScrollView class]]) {
             UIScrollView *scrollView = (UIScrollView *)self.view;
+            scrollView.delegate = self;
             scrollOffsetY = scrollView.contentOffset.y;
         }
         newFrame.origin.y = self.originY + scrollOffsetY;
@@ -172,12 +173,30 @@
     [self dismissNoticeWithDuration:self.duration delay:0.0 hiddenYOrigin:self.hiddenYOrigin];
 }
 
+#pragma scrollView delegate
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGRect newFrame = self.gradientView.frame;
+    
+    newFrame.origin.y = self.originY + scrollView.contentOffset.y;
+    
+    self.gradientView.frame = newFrame;
+    self.gradientView.alpha = self.alpha;
+}
+
 #pragma mark -
 
 - (void)cleanup
 {
     [self.displayTimer invalidate];
     [self.gradientView removeFromSuperview];
+    //remove self from being the delegate of scroll view
+    if ([self.view isKindOfClass:[UIScrollView class]]) {
+        UIScrollView *scrollView = (UIScrollView *)self.view;
+        scrollView.delegate = nil;
+    }
+
     self.gradientView = nil;
     self.titleLabel = nil;
     self.messageLabel = nil;

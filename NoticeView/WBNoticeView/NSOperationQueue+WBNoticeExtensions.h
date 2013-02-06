@@ -16,5 +16,6 @@
 + (WBNoticeOperation *)addNoticeView:(WBNoticeView *)noticeView
                     filterDuplicates:(BOOL)filterDuplicates;
 + (void)cancelAllNoticeViews;
++ (void)cancelAndDismissAllNoticeViews;
 
 @end

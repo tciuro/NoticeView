@@ -30,6 +30,14 @@ static NSOperationQueue *_noticeQueue = nil;
     [[self noticeQueue] cancelAllOperations];
 }
 
++ (void)cancelAndDismissAllNoticeViews
+{
+    for (WBNoticeOperation *operation in [[self noticeQueue] operations]) {
+        [operation.noticeView dismissNotice];
+        [operation cancel];
+    }
+}
+
 + (WBNoticeOperation *)addNoticeView:(WBNoticeView *)noticeView
 {
     return [self addNoticeView:noticeView filterDuplicates:NO];

@@ -11,6 +11,7 @@
 @interface WBNoticeOperation ()
 
 @property (nonatomic, assign, getter = isExecuting) BOOL executing;
+@property (nonatomic, assign, getter = isCancelled) BOOL cancelled;
 @property (nonatomic, assign, getter = isFinished) BOOL finished;
 
 @end
@@ -19,8 +20,13 @@
 
 - (void)start
 {
+    if (self.cancelled) {
+        return;
+    }
+
     self.executing = YES;
     self.finished = NO;
+
     __weak __typeof(&*self)weakSelf = self;
     self.noticeView.dismissalBlock = ^(BOOL dismissedInteractively) {
         [weakSelf willChangeValueForKey:@"isFinished"];
@@ -31,7 +37,15 @@
         [weakSelf didChangeValueForKey:@"isExecuting"];
         [weakSelf didChangeValueForKey:@"isFinished"];
     };
-    [self.noticeView show];
+
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [self.noticeView show];
+    });
+}
+
+- (void)cancel
+{
+    self.cancelled = YES;
 }
 
 @end

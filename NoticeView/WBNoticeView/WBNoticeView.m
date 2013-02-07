@@ -77,6 +77,11 @@
     return [self.title isEqual:object.title] && [self.message isEqual:object.message];
 }
 
+- (BOOL)isHidden
+{
+	return self.gradientView == nil;
+}
+
 #pragma mark - KVO
 
 - (void)registerKVO {

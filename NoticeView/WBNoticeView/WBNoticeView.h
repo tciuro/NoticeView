@@ -97,6 +97,11 @@ typedef enum WBNoticeViewSlidingMode {
 @property (nonatomic, readwrite, getter = isSticky) BOOL sticky;
 
 /**
+ A Boolean value that determines whether the notice is hidden.
+ */
+@property(nonatomic, readonly, getter = isHidden) BOOL hidden;
+
+/**
  Decides if the notice is shown sliding up from the bottom or down from the top
  
  **Default**: 'WBNoticeViewSlidingModeDown'

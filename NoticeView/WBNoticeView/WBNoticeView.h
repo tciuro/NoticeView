@@ -108,7 +108,6 @@ typedef enum WBNoticeViewSlidingMode {
 */
 @property WBNoticeViewSlidingMode slidingMode;
 
-
 ///----------------------------------------
 /// @name Showing and Dismissing the Notice
 ///----------------------------------------

@@ -171,7 +171,7 @@
 {
     [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^ {
 		[self unregisterKVO];
-		
+
         CGRect newFrame = self.gradientView.frame;
         if (self.slidingMode == WBNoticeViewSlidingModeUp)  {
             newFrame.origin.y = self.gradientView.frame.origin.y + self.gradientView.bounds.size.height;

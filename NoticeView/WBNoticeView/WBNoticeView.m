@@ -49,21 +49,16 @@
     NSParameterAssert(view);
     self = [super init];
     if (self) {
-        self.view = view;
-        self.title = title ?: @"Unknown Error";
-        self.message = @"Information not provided";
-        self.duration = 0.5;
-        self.alpha = 1.0;
-        self.delay = 2.0;
-        self.tapToDismissEnabled = YES;
-        self.slidingMode = WBNoticeViewSlidingModeDown;
+        _view = view;
+        _title = title ?: @"Unknown Error";
+        _message = @"Information not provided";
+        _duration = 0.5;
+        _alpha = 1.0;
+        _delay = 2.0;
+        _tapToDismissEnabled = YES;
+        _slidingMode = WBNoticeViewSlidingModeDown;
     }
     return self;
-}
-
-- (NSTimeInterval)delay
-{
-    return [self isSticky] ? 0.0 : _delay;
 }
 
 - (void)show
@@ -118,7 +113,7 @@
         self.gradientView.alpha = self.alpha;
     } completion:^ (BOOL finished) {
         // if it's not sticky, hide it automatically
-        if (self.tapToDismissEnabled && !self.isSticky) {
+        if ((self.tapToDismissEnabled && !self.isSticky) || (!self.tapToDismissEnabled && self.isSticky)) {
             // Schedule a timer
             self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:self.delay target:self selector:@selector(dismissAfterTimerExpiration) userInfo:nil repeats:NO];
         } else if (!self.isSticky) {

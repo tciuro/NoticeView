@@ -72,6 +72,42 @@
     return [self.title isEqual:object.title] && [self.message isEqual:object.message];
 }
 
+- (BOOL)isHidden
+{
+	return self.gradientView == nil;
+}
+
+#pragma mark - KVO
+
+- (void)registerKVO {
+	if ([self.view isKindOfClass:[UIScrollView class]]) {
+		[self.view addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:NULL];
+	}
+}
+
+- (void)unregisterKVO {
+	if ([self.view isKindOfClass:[UIScrollView class]]) {
+		[self.view removeObserver:self forKeyPath:@"contentOffset"];
+	}
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    @try {
+        if (object && [object isKindOfClass:[UIScrollView class]] && [keyPath isEqualToString:@"contentOffset"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                CGRect newFrame = self.gradientView.frame;
+                newFrame.origin.y = ((UIScrollView *)object).contentOffset.y;
+                self.hiddenYOrigin += (newFrame.origin.y - self.gradientView.frame.origin.y);
+                self.gradientView.frame = newFrame;
+                [self.view bringSubviewToFront:self.gradientView];
+            });
+        }
+    }
+    @catch (NSException *exception) {
+        
+    }
+}
+
 #pragma mark -
 
 - (void)displayNotice
@@ -107,10 +143,13 @@
         if ([self.view isKindOfClass:[UIScrollView class]]) {
             UIScrollView *scrollView = (UIScrollView *)self.view;
             scrollOffsetY = scrollView.contentOffset.y;
+			self.hiddenYOrigin += scrollOffsetY;
         }
         newFrame.origin.y = self.originY + scrollOffsetY;
         self.gradientView.frame = newFrame;
         self.gradientView.alpha = self.alpha;
+		// Register KVO
+		[self registerKVO];
     } completion:^ (BOOL finished) {
         // if it's not sticky, hide it automatically
         if ((self.tapToDismissEnabled && !self.isSticky) || (!self.tapToDismissEnabled && self.isSticky)) {
@@ -126,6 +165,8 @@
 - (void)dismissNoticeWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay hiddenYOrigin:(CGFloat)hiddenYOrigin
 {
     [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^ {
+		[self unregisterKVO];
+
         CGRect newFrame = self.gradientView.frame;
         if (self.slidingMode == WBNoticeViewSlidingModeUp)  {
             newFrame.origin.y = self.gradientView.frame.origin.y + self.gradientView.bounds.size.height;

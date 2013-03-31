@@ -10,4 +10,6 @@
 
 @interface WBScrollViewController : UITableViewController
 
+@property (nonatomic, assign) BOOL floating;
+
 @end

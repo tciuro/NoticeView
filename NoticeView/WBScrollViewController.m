@@ -49,6 +49,7 @@
                                                              message:@"Check your network connection."];
     notice.sticky = YES;
     notice.tapToDismissEnabled = YES;
+    notice.floating = self.floating;
     [notice show];
 }
 

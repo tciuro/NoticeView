@@ -25,6 +25,7 @@
 // THE SOFTWARE
 //
 
+#import "WBScrollViewController.h"
 #import "WBViewController.h"
 #import "WBNoticeView.h"
 #import "WBErrorNoticeView.h"
@@ -184,6 +185,13 @@
 - (IBAction)dismissStickyNotice:(id)sender
 {
     [self.currentNoticeView dismissNotice];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Floating"]) {
+        WBScrollViewController *controller = [segue destinationViewController];
+        controller.floating = YES;
+    }
 }
 
 @end

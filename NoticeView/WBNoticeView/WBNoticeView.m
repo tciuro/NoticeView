@@ -16,6 +16,7 @@
 @property(nonatomic, strong) UILabel *titleLabel;
 @property(nonatomic, strong) UILabel *messageLabel;
 
+@property(nonatomic, assign, getter = isObserving) BOOL observing;
 @property(nonatomic, assign) CGFloat hiddenYOrigin;
 @property(nonatomic, strong) WBNoticeView *currentNotice;
 @property(nonatomic, copy) void (^dismissalBlock)(BOOL dismissedInteractively);
@@ -43,6 +44,7 @@
 @synthesize originY = _originY;
 @synthesize sticky = _sticky;
 @synthesize dismissalBlock = _dismissalBlock;
+@synthesize floating = _floating;
 
 - (id)initWithView:(UIView *)view title:(NSString *)title
 {
@@ -57,6 +59,7 @@
         _delay = 2.0;
         _tapToDismissEnabled = YES;
         _slidingMode = WBNoticeViewSlidingModeDown;
+        _floating = NO;
     }
     return self;
 }
@@ -111,6 +114,7 @@
         newFrame.origin.y = self.originY + scrollOffsetY;
         self.gradientView.frame = newFrame;
         self.gradientView.alpha = self.alpha;
+        [self registerObserver];
     } completion:^ (BOOL finished) {
         // if it's not sticky, hide it automatically
         if ((self.tapToDismissEnabled && !self.isSticky) || (!self.tapToDismissEnabled && self.isSticky)) {
@@ -126,6 +130,7 @@
 - (void)dismissNoticeWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay hiddenYOrigin:(CGFloat)hiddenYOrigin
 {
     [UIView animateWithDuration:duration delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^ {
+        [self unregisterObserver];
         CGRect newFrame = self.gradientView.frame;
         if (self.slidingMode == WBNoticeViewSlidingModeUp)  {
             newFrame.origin.y = self.gradientView.frame.origin.y + self.gradientView.bounds.size.height;
@@ -172,6 +177,44 @@
     self.gradientView.accessibilityTraits = (self.isTapToDismissEnabled) ? UIAccessibilityTraitButton : UIAccessibilityTraitStaticText;
     self.gradientView.accessibilityLabel = accessibilityLabel;
     self.dismissButton.accessibilityLabel = accessibilityLabel;
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    if (self.floating && object && [object isKindOfClass:[UIScrollView class]] && [keyPath isEqualToString:@"contentOffset"]) {
+        CGRect newFrame = self.gradientView.frame;
+        newFrame.origin.y = ((UIScrollView *)object).contentOffset.y;
+        self.hiddenYOrigin += (newFrame.origin.y - self.gradientView.frame.origin.y);
+        self.gradientView.frame = newFrame;
+        [self.view bringSubviewToFront:self.gradientView];
+    }
+    if (self.floating && self.view.window == nil) {
+        [self unregisterObserver];
+    }
+}
+
+- (void)registerObserver
+{
+    if (self.floating && [self.view isKindOfClass:[UIScrollView class]]) {
+        [self.view addObserver:self
+                    forKeyPath:@"contentOffset"
+                       options:NSKeyValueObservingOptionNew
+                       context:NULL];
+        self.observing = YES;
+    }
+}
+
+- (void)unregisterObserver
+{
+    if (self.floating && self.isObserving && [self.view isKindOfClass:[UIScrollView class]]) {
+        [self.view removeObserver:self forKeyPath:@"contentOffset"];
+        self.observing = NO;
+    }
 }
 
 #pragma mark -

@@ -103,6 +103,13 @@ typedef enum WBNoticeViewSlidingMode {
 */
 @property WBNoticeViewSlidingMode slidingMode;
 
+/**
+ A Boolean value that determines if the notice will be floating. If added to a `UIScrollView`, it
+ will have a fixed position while scrolling.
+
+ **Default**: `NO`
+ */
+@property (nonatomic, readwrite, getter = isFloating) BOOL floating;
 
 ///----------------------------------------
 /// @name Showing and Dismissing the Notice

@@ -21,6 +21,20 @@
     return notice;
 }
 
++ (WBStickyNoticeView *)stickyNoticeInNavigationController:(UINavigationController *)navVC title:(NSString *)title withDismissalBlock:(void (^)(BOOL))block{
+    UIView *navigationBarNotifyView = [[UIView alloc] initWithFrame:CGRectMake(0, navVC.navigationBar.frame.size.height+navVC.navigationBar.frame.origin.y, navVC.navigationBar.frame.size.width, 1)];
+    navigationBarNotifyView.backgroundColor = [UIColor clearColor];
+    [navVC.view insertSubview:navigationBarNotifyView belowSubview:navVC.navigationBar];
+    WBStickyNoticeView *stickyNotification = [WBStickyNoticeView stickyNoticeInView:navigationBarNotifyView title:title];
+    [stickyNotification setDismissalBlock:^(BOOL dismissedInteractively) {
+        [navigationBarNotifyView removeFromSuperview];
+        if (block) {
+            block(dismissedInteractively);
+        }
+    }];
+    return stickyNotification;
+}
+
 - (void)show
 {
     // Obtain the screen width

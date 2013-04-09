@@ -26,5 +26,6 @@
  @return The newly created error notice object.
  */
 + (WBErrorNoticeView *)errorNoticeInView:(UIView *)view title:(NSString *)title message:(NSString *)message;
++ (WBErrorNoticeView *)errorNoticeInNavigationController:(UINavigationController *)navVC title:(NSString *)title message:(NSString *)message withDismissalBlock:(void (^)(BOOL dismissedInteractively))block;
 
 @end

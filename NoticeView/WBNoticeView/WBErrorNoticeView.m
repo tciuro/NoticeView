@@ -22,6 +22,20 @@
     return notice;
 }
 
++ (WBErrorNoticeView *)errorNoticeInNavigationController:(UINavigationController *)navVC title:(NSString *)title message:(NSString *)message withDismissalBlock:(void (^)(BOOL))block{
+    UIView *navigationBarNotifyView = [[UIView alloc] initWithFrame:CGRectMake(0, navVC.navigationBar.frame.size.height+navVC.navigationBar.frame.origin.y, navVC.navigationBar.frame.size.width, 1)];
+    navigationBarNotifyView.backgroundColor = [UIColor clearColor];
+    [navVC.view insertSubview:navigationBarNotifyView belowSubview:navVC.navigationBar];
+    WBErrorNoticeView *errorNotification = [WBErrorNoticeView errorNoticeInView:navigationBarNotifyView title:title message:title];
+    [errorNotification setDismissalBlock:^(BOOL dismissedInteractively) {
+        [navigationBarNotifyView removeFromSuperview];
+        if (block) {
+            block(dismissedInteractively);
+        }
+    }];
+    return errorNotification;
+}
+
 - (void)show
 {
     // Obtain the screen width

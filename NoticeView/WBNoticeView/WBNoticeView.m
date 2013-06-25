@@ -149,7 +149,7 @@
 - (void)dismissNotice
 {
     [self.displayTimer invalidate];
-    [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
+    [self dismissNoticeWithDuration:self.duration delay:0.0 hiddenYOrigin:self.hiddenYOrigin];
 }
 
 - (void)dismissNoticeInteractively

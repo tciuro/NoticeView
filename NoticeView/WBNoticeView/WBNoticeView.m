@@ -20,6 +20,7 @@
 @property(nonatomic, assign) CGFloat hiddenYOrigin;
 @property(nonatomic, strong) WBNoticeView *currentNotice;
 @property(nonatomic, copy) void (^dismissalBlock)(BOOL dismissedInteractively);
+@property(nonatomic, copy) void (^dismissalBlockWithOptionalDismiss)(BOOL dismissedInteractively, BOOL *dismissAfterBlock);
 @property(nonatomic, strong) NSTimer *displayTimer;
 
 - (void)dismissNoticeWithDuration:(NSTimeInterval)duration
@@ -44,6 +45,7 @@
 @synthesize originY = _originY;
 @synthesize sticky = _sticky;
 @synthesize dismissalBlock = _dismissalBlock;
+@synthesize dismissalBlockWithOptionalDismiss = _dismissalBlockWithOptionalDismiss;
 @synthesize floating = _floating;
 
 - (id)initWithView:(UIView *)view title:(NSString *)title
@@ -60,6 +62,7 @@
         _tapToDismissEnabled = YES;
         _slidingMode = WBNoticeViewSlidingModeDown;
         _floating = NO;
+        _contentInset = UIEdgeInsetsMake(0,0,0,0); // No insets as default
     }
     return self;
 }
@@ -140,7 +143,16 @@
         }
         self.gradientView.frame = newFrame;
     } completion:^ (BOOL finished) {
-        if (self.dismissalBlock) self.dismissalBlock(NO);
+        
+        if (self.dismissalBlock) {
+            self.dismissalBlock(NO);
+        }
+        
+        if (self.dismissalBlockWithOptionalDismiss) {
+            BOOL dismissAfterBlock = YES;
+            self.dismissalBlockWithOptionalDismiss(NO, &dismissAfterBlock);
+        }
+        
         // Cleanup
         [self cleanup];
     }];
@@ -154,14 +166,27 @@
 
 - (void)dismissNoticeInteractively
 {
+    // TODO: Should this timer invalidate here or when the dismissalBlock is set to nil further down?
     [self.displayTimer invalidate];
+    
     if (self.dismissalBlock) {
         self.dismissalBlock(YES);
-        
+    }
+ 
+    // By default we want to dismiss after the block has been called
+    BOOL dismissAfterBlock = YES;
+    if (self.dismissalBlockWithOptionalDismiss) {
+        self.dismissalBlockWithOptionalDismiss(YES, &dismissAfterBlock);
+    }
+    
+    // Lets check if the block wanted us to dismiss
+    if (dismissAfterBlock) {
         // Clear the reference to the dismissal block so that the animation does invoke the block a second time
         self.dismissalBlock = nil;
+        self.dismissalBlockWithOptionalDismiss = nil;
+        
+        [self dismissNoticeWithDuration:self.duration delay:0 hiddenYOrigin:self.hiddenYOrigin];
     }
-    [self dismissNoticeWithDuration:self.duration delay:0 hiddenYOrigin:self.hiddenYOrigin];
 }
 
 - (void)dismissAfterTimerExpiration

@@ -62,6 +62,7 @@
         _tapToDismissEnabled = YES;
         _slidingMode = WBNoticeViewSlidingModeDown;
         _floating = NO;
+        _contentInset = UIEdgeInsetsMake(0,0,0,0); // No insets as default
     }
     return self;
 }

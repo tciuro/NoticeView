@@ -35,7 +35,7 @@
     
     // Make and add the title label
     float titleYOrigin = 18.0;
-    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0, titleYOrigin, viewWidth - 70.0, 16.0)];
+    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(55.0 + (self.contentInset.left), titleYOrigin + (self.contentInset.top), viewWidth - 70.0 - (self.contentInset.right+self.contentInset.left) , 16.0)];
     self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.shadowOffset = CGSizeMake(0.0, -1.0);
     self.titleLabel.shadowColor = [UIColor blackColor];

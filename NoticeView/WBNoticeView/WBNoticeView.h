@@ -43,6 +43,11 @@ typedef enum WBNoticeViewSlidingMode {
 @property (nonatomic, weak) UIView *view;
 
 /**
+ Content insets
+ */
+@property (nonatomic) UIEdgeInsets contentInset;
+
+/**
  The title text for the notice.
  
  **Default**: `"Unknown Error"`

@@ -43,6 +43,11 @@ typedef enum WBNoticeViewSlidingMode {
 @property (nonatomic, weak) UIView *view;
 
 /**
+ Content insets
+ */
+@property (nonatomic) UIEdgeInsets contentInset;
+
+/**
  The title text for the notice.
  
  **Default**: `"Unknown Error"`
@@ -136,8 +141,18 @@ typedef enum WBNoticeViewSlidingMode {
  
  The block accepts a single Boolean value that indicates if the notice was dismissed interactively by the user or was dismissed due to expiration of the display interval.
  
- @param block The block to be executed when the notice is dismissed.
+ @param block The block to be executed when the notice receives a dismissal.
  */
 - (void)setDismissalBlock:(void (^)(BOOL dismissedInteractively))block;
+
+/**
+ Sets a block to be executed when the notice is dismissed.
+ 
+ The block accepts a Boolean value that indicates if the notice was dismissed interactively by the user or was dismissed due to expiration of the display interval.
+ The block also accepts a boolean pointer that makes it possible to make the dismissal optional depending on the resulting block. (Good for putting up an AlertView in the block to check if the user is sure)
+ 
+ @param block The block to be executed when the notice receives a dismissal.
+ */
+- (void)setDismissalBlockWithOptionalDismiss:(void (^)(BOOL dismissedInteractively, BOOL *dismissAfterBlock))block;
 
 @end

@@ -47,6 +47,7 @@
 @synthesize dismissalBlock = _dismissalBlock;
 @synthesize dismissalBlockWithOptionalDismiss = _dismissalBlockWithOptionalDismiss;
 @synthesize floating = _floating;
+@synthesize currentlyDisplayed = _currentlyDisplayed;
 
 - (id)initWithView:(UIView *)view title:(NSString *)title
 {
@@ -62,6 +63,7 @@
         _tapToDismissEnabled = YES;
         _slidingMode = WBNoticeViewSlidingModeDown;
         _floating = NO;
+        _currentlyDisplayed = NO;
         _contentInset = UIEdgeInsetsMake(0,0,0,0); // No insets as default
     }
     return self;
@@ -104,7 +106,9 @@
     {
         self.gradientView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
     }
-    
+
+    _currentlyDisplayed = YES;
+
     // Go ahead, display it
     [UIView animateWithDuration:self.duration animations:^ {
         CGRect newFrame = self.gradientView.frame;
@@ -152,7 +156,7 @@
             BOOL dismissAfterBlock = YES;
             self.dismissalBlockWithOptionalDismiss(NO, &dismissAfterBlock);
         }
-        
+        _currentlyDisplayed = NO;
         // Cleanup
         [self cleanup];
     }];

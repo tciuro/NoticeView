@@ -37,7 +37,9 @@
         
         NSRange rTest = NSMakeRange(rRemainingText.location, rWhitespace.location - rRemainingText.location);
         NSString *textTest = [self.text substringWithRange:rTest];
-        CGSize sizeTest = [textTest sizeWithFont:self.font forWidth:1024.0 lineBreakMode:NSLineBreakByWordWrapping];
+            NSAttributedString *attributedText =[[NSAttributedString alloc] initWithString:textTest attributes:@{NSFontAttributeName: self.font}];
+        CGRect rect = [attributedText boundingRectWithSize:(CGSize){1024.0, CGFLOAT_MAX}options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+        CGSize sizeTest = rect.size;
         
         if (sizeTest.width > self.bounds.size.width) {
             [lines addObject:[currentLine stringByTrimmingCharactersInSet:wordSeparators]];

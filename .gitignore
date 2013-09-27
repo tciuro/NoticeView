@@ -11,8 +11,8 @@
 *.mode2v3
 *.pbxuser
 *.perspectivev3
-*.xcuserdatad
 
-/NoticeView.xcodeproj/project.xcworkspace/xcshareddata/
-/NoticeView.xcodeproj/xcshareddata/
+NoticeView.xcodeproj/xcuserdata/tito*
+NoticeView.xcodeproj/project.xcworkspace/xcuserdata/tito*
+
 /.gitignore

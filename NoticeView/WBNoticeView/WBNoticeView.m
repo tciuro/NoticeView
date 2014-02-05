@@ -120,12 +120,9 @@
         [self registerObserver];
     } completion:^ (BOOL finished) {
         // if it's not sticky, hide it automatically
-        if ((self.tapToDismissEnabled && !self.isSticky) || (!self.tapToDismissEnabled && self.isSticky)) {
+        if (!self.isSticky) {
             // Schedule a timer
             self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:self.delay target:self selector:@selector(dismissAfterTimerExpiration) userInfo:nil repeats:NO];
-        } else if (!self.isSticky) {
-            // Display for a while, then hide it again
-            [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
         }
     }];
 }
@@ -161,7 +158,7 @@
 - (void)dismissNotice
 {
     [self.displayTimer invalidate];
-    [self dismissNoticeWithDuration:self.duration delay:self.delay hiddenYOrigin:self.hiddenYOrigin];
+    [self dismissNoticeWithDuration:self.duration delay:0.0 hiddenYOrigin:self.hiddenYOrigin];
 }
 
 - (void)dismissNoticeInteractively

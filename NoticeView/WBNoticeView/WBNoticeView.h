@@ -116,6 +116,14 @@ typedef enum WBNoticeViewSlidingMode {
  */
 @property (nonatomic, readwrite, getter = isFloating) BOOL floating;
 
+/**
+*
+*   A boolean value that represents whether or not the current notice view is visible on screen or not.
+*   Easy way to prevent multiple notices being shown at once is to check this property. :)
+*
+*/
+@property(nonatomic, readonly) BOOL currentlyDisplayed;
+
 ///----------------------------------------
 /// @name Showing and Dismissing the Notice
 ///----------------------------------------

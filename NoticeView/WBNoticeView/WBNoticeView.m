@@ -78,6 +78,10 @@
     return [self.title isEqual:object.title] && [self.message isEqual:object.message];
 }
 
+- (NSUInteger)hash {
+    return [self.title hash] + [self.message hash];
+}
+
 #pragma mark -
 
 - (void)displayNotice

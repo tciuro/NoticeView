@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum WBNoticeViewSlidingMode {
+typedef NS_ENUM(NSUInteger, WBNoticeViewSlidingMode)  {
     WBNoticeViewSlidingModeUp,
     WBNoticeViewSlidingModeDown,
-} WBNoticeViewSlidingMode;
+};
 
 /**
  `WBNoticeView` objects provides a lightweight, non-intrusive means for displaying information to the user. The `WBNoticeView` class is an abstract class that encapsulates the interface common to all notice objects.

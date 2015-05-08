@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		250628781651F7DC00D3443E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 250628771651F7DB00D3443E /* Default-568h@2x.png */; };
 		3EA90DC617086FF70045E620 /* WBScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA90DC517086FF70045E620 /* WBScrollViewController.m */; };
+		47DC24E91AFD03200039192A /* MyErrorNoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47DC24E61AFD03200039192A /* MyErrorNoticeView.m */; };
+		47DC24EA1AFD03200039192A /* MySuccessNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 47DC24E81AFD03200039192A /* MySuccessNotice.m */; };
 		592BDDE915645BEE00B78820 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE115645BEE00B78820 /* Default.png */; };
 		592BDDEA15645BEE00B78820 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE215645BEE00B78820 /* Default@2x.png */; };
 		592BDDEB15645BEE00B78820 /* NoticeView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 592BDDE415645BEE00B78820 /* NoticeView.bundle */; };
@@ -39,6 +41,10 @@
 		250628771651F7DB00D3443E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Default-568h@2x.png"; sourceTree = "<group>"; };
 		3EA90DC417086FF70045E620 /* WBScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBScrollViewController.h; sourceTree = "<group>"; };
 		3EA90DC517086FF70045E620 /* WBScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WBScrollViewController.m; sourceTree = "<group>"; };
+		47DC24E51AFD03200039192A /* MyErrorNoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyErrorNoticeView.h; sourceTree = "<group>"; };
+		47DC24E61AFD03200039192A /* MyErrorNoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyErrorNoticeView.m; sourceTree = "<group>"; };
+		47DC24E71AFD03200039192A /* MySuccessNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySuccessNotice.h; sourceTree = "<group>"; };
+		47DC24E81AFD03200039192A /* MySuccessNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySuccessNotice.m; sourceTree = "<group>"; };
 		592BDDE115645BEE00B78820 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		592BDDE215645BEE00B78820 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		592BDDE415645BEE00B78820 /* NoticeView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NoticeView.bundle; sourceTree = "<group>"; };
@@ -108,6 +114,10 @@
 		592BDDE315645BEE00B78820 /* WBNoticeView */ = {
 			isa = PBXGroup;
 			children = (
+				47DC24E51AFD03200039192A /* MyErrorNoticeView.h */,
+				47DC24E61AFD03200039192A /* MyErrorNoticeView.m */,
+				47DC24E71AFD03200039192A /* MySuccessNotice.h */,
+				47DC24E81AFD03200039192A /* MySuccessNotice.m */,
 				FE07240A16BAB0F000B46F59 /* NSOperationQueue+WBNoticeExtensions.h */,
 				FE07240B16BAB0F000B46F59 /* NSOperationQueue+WBNoticeExtensions.m */,
 				746CBCFE1570A1D100B844B1 /* WBErrorNoticeView.h */,
@@ -274,11 +284,13 @@
 				592BDDED15645BEE00B78820 /* WBNoticeView.m in Sources */,
 				746CBD001570A1D100B844B1 /* WBErrorNoticeView.m in Sources */,
 				746CBD081570A8FA00B844B1 /* WBSuccessNoticeView.m in Sources */,
+				47DC24E91AFD03200039192A /* MyErrorNoticeView.m in Sources */,
 				7492FA45157C8CD700FB834C /* WBBlueGradientView.m in Sources */,
 				7492FA46157C8CD700FB834C /* WBRedGradientView.m in Sources */,
 				748A6A59157D0B74003C7655 /* WBGrayGradientView.m in Sources */,
 				748A6A5D157D0D06003C7655 /* WBStickyNoticeView.m in Sources */,
 				FED81FA916B97A1C00254985 /* WBNoticeOperation.m in Sources */,
+				47DC24EA1AFD03200039192A /* MySuccessNotice.m in Sources */,
 				FE07240C16BAB0F000B46F59 /* NSOperationQueue+WBNoticeExtensions.m in Sources */,
 				3EA90DC617086FF70045E620 /* WBScrollViewController.m in Sources */,
 			);

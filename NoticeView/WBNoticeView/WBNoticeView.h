@@ -13,6 +13,12 @@ typedef enum WBNoticeViewSlidingMode {
     WBNoticeViewSlidingModeDown,
 } WBNoticeViewSlidingMode;
 
+typedef enum
+{
+    LeftToRight = 0 ,
+    RightToLeft = 1
+}LanguageDirection;
+
 /**
  `WBNoticeView` objects provides a lightweight, non-intrusive means for displaying information to the user. The `WBNoticeView` class is an abstract class that encapsulates the interface common to all notice objects.
  */
@@ -115,6 +121,14 @@ typedef enum WBNoticeViewSlidingMode {
  **Default**: `NO`
  */
 @property (nonatomic, readwrite, getter = isFloating) BOOL floating;
+
+/**
+An enum which specifices the direction of the language
+ 
+ **Default**: Left to right
+ */
+@property (nonatomic, assign) LanguageDirection languageDirection;
+
 
 ///----------------------------------------
 /// @name Showing and Dismissing the Notice

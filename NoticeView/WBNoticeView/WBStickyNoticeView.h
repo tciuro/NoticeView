@@ -25,5 +25,6 @@
  @return The newly created sticky notice object.
  */
 + (WBStickyNoticeView *)stickyNoticeInView:(UIView *)view title:(NSString *)title;
++ (WBStickyNoticeView *)stickyNoticeInNavigationController:(UINavigationController *)navVC title:(NSString *)title withDismissalBlock:(void (^)(BOOL dismissedInteractively))block;
 
 @end

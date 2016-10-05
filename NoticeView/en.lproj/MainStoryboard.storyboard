@@ -493,27 +493,6 @@
     <resources>
         <image name="navigationBar.png" width="320" height="44"/>
     </resources>
-    <classes>
-        <class className="WBScrollViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WBScrollViewController.h"/>
-        </class>
-        <class className="WBViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WBViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dismissStickyNotice:"/>
-                <relationship kind="action" name="showLargeErrorNotice:"/>
-                <relationship kind="action" name="showLargeErrorNoticeBelow:"/>
-                <relationship kind="action" name="showSmallErrorNotice:"/>
-                <relationship kind="action" name="showSmallErrorNoticeAndPush:"/>
-                <relationship kind="action" name="showSmallErrorNoticeBelow:"/>
-                <relationship kind="action" name="showSmallStickyNoticeBelow:"/>
-                <relationship kind="action" name="showSmallSuccessNotice:"/>
-                <relationship kind="action" name="showSmallSuccessNoticeBelow:"/>
-                <relationship kind="action" name="showStickyNoticeAndPush:"/>
-                <relationship kind="outlet" name="headerView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

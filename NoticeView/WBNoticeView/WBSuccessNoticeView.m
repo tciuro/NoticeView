@@ -21,6 +21,20 @@
     return notice;
 }
 
++ (WBSuccessNoticeView *)successNoticeInNavigationController:(UINavigationController *)navVC title:(NSString *)title withDismissalBlock:(void (^)(BOOL))block{
+    UIView *navigationBarNotifyView = [[UIView alloc] initWithFrame:CGRectMake(0, navVC.navigationBar.frame.size.height+navVC.navigationBar.frame.origin.y, navVC.navigationBar.frame.size.width, 1)];
+    navigationBarNotifyView.backgroundColor = [UIColor clearColor];
+    [navVC.view insertSubview:navigationBarNotifyView belowSubview:navVC.navigationBar];
+    WBSuccessNoticeView *successNotification = [WBSuccessNoticeView successNoticeInView:navigationBarNotifyView title:title];
+    [successNotification setDismissalBlock:^(BOOL dismissedInteractively) {
+        [navigationBarNotifyView removeFromSuperview];
+        if (block) {
+            block(dismissedInteractively);
+        }
+    }];
+    return successNotification;
+}
+
 - (void)show
 {
     // Obtain the screen width
